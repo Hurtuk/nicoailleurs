@@ -7,12 +7,20 @@ const API_BASE = "https://nicoailleurs.com/api";
 
 export const getTrips = async (lang: string, filters?: any): Promise<Trip[]> => {
   const { data } = await axios.get<Trip[]>(`${API_BASE}/getTrips.php?lang=${lang}&` + jsonToUrl(filters));
-  return data;
+  return data.map(trip => ({
+    ...trip,
+    startDate: new Date(trip.startDate),
+    endDate: new Date(trip.endDate),
+  }));
 };
 
 export const getTrip = async (id: string | number, lang: string): Promise<Trip> => {
   const { data } = await axios.get<Trip>(`${API_BASE}/getTrip.php?id=${id}&lang=${lang}`);
-  return data;
+  return {
+    ...data,
+    startDate: new Date(data.startDate),
+    endDate: new Date(data.endDate),
+  };
 };
 
 export const getVisitedCountries = async (lang: string): Promise<Country[]> => {

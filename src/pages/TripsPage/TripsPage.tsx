@@ -1,46 +1,43 @@
-import { Link } from "react-router-dom";
 import useTrips from "../../hooks/useTrips";
 import TripCard from "../../components/TripCard/TripCard";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import type { Trip } from "../../api/models/Trip";
+import styles from "./TripsPage.module.scss";
 
 export default function TripsPage() {
-  const { i18n } = useTranslation();
-  const { trips, loading, error } = useTrips(i18n.language);
+  const { i18n, t } = useTranslation();
+  const { trips } = useTrips(i18n.language);
 
-  if (loading) {
-    return <div>Chargement des voyages...</div>;
-  }
+  const [tripsByYear, setTripsByYear] = useState({} as {[year: string]: Trip[]});
 
-  if (error) {
-    return <div>Erreur : {error}</div>;
-  }
-
-  if (!trips.length) {
-    return <div>Aucun voyage trouvé.</div>;
-  }
+  useEffect(() => {
+    const sorted: any = {};
+    trips.forEach(trip => {
+      const year = trip.startDate.getFullYear();
+      if (!sorted[year]) {
+        sorted[year] = [];
+      }
+      sorted[year].push(trip);
+    });
+    setTripsByYear(sorted);
+  }, [trips])
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Mes voyages</h1>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: "1.5rem",
-          marginTop: "2rem",
-        }}
-      >
-        {trips.map((trip) => (
-          <Link
-            key={trip.id}
-            to={`/trips/${trip.id}`}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <TripCard trip={trip} />
-          </Link>
-        ))}
-      </div>
+    <div className={styles.tripsWrapper} style={{ padding: "2rem" }}>
+      <h1>{t('header.stories')}</h1>
+      {Object.entries(tripsByYear)
+        .sort((y1, y2) => y2[0].localeCompare(y1[0]))
+        .map(year => (
+          <>
+            <h2 className={styles.year}>{year[0]}</h2>
+            <div className="trips-wrapper">
+              {year[1]!.map((trip) => (
+                <TripCard trip={trip} />
+              ))}
+            </div>
+          </>
+      ))}
     </div>
   );
 }

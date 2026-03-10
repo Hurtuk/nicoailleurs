@@ -20,6 +20,12 @@ a:hover {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  text-align: center;
+  margin-top: 0;
+}
+
+h2 {
+  text-align: center;
 }
 
 button,
@@ -44,4 +50,28 @@ button:focus-visible,
 .button:focus,
 .button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.trips-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  > * {
+    min-width: calc(25% - 1rem);
+    flex: 0 1;
+
+    @media screen and (max-width: $screen-big) {
+      min-width: calc(33.3% - 1rem);
+    }
+
+    @media screen and (max-width: $screen-medium) {
+      min-width: calc(50% - 1rem);
+    }
+
+    @media screen and (max-width: $screen-small) {
+      min-width: 100%;
+    }
+  }
 }

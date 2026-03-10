@@ -2,8 +2,8 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 const routes = {
-  fr: { countries: "pays", cities: "villes", trips: 'voyages' },
-  en: { countries: "country", cities: "cities", trips: 'trips' },
+  fr: { "/": "", countries: "pays", cities: "villes", trips: 'voyages', guides: "guides" },
+  en: { "/": "", countries: "country", cities: "cities", trips: 'trips', guides: "guides" },
 };
 
 export default function useLocalizedPath() {

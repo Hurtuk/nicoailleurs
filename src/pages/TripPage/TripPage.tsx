@@ -1,11 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import useTrip from "../../hooks/useTrip";
 import { useTranslation } from "react-i18next";
+import useLocalizedPath from "../../hooks/useLocalizedPath";
 
 export default function TripPage() {
   const { i18n } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const { trip, loading, error } = useTrip(id!, i18n.language);
+  const path = useLocalizedPath();
 
   if (loading) {
     return <div>Chargement du voyage...</div>;
@@ -21,7 +23,7 @@ export default function TripPage() {
 
   return (
     <div style={{ padding: "2rem" }}>
-      <Link to="/trips" style={{ textDecoration: "none", color: "inherit" }}>
+      <Link to={path("trips")} style={{ textDecoration: "none", color: "inherit" }}>
         ← Retour aux voyages
       </Link>
 

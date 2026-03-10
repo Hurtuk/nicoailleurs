@@ -3,6 +3,6 @@ export interface Trip {
   title: string;
   place: string;
   excerpt: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
 }

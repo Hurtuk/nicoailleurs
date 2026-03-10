@@ -1,0 +1,29 @@
+.tripsWrapper {
+  position: relative;
+
+  &::before {
+    content: '';
+    background: url(images/latest-bg.jpg);
+    background-position: bottom;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .1;
+    z-index: -1;
+  }
+}
+
+.year {
+  margin-top: 3rem;
+  color: $main-color-light;
+
+  &::before,
+  &::after {
+    content: '~';
+    margin: 0 1rem;
+    opacity: .5;
+  }
+}
