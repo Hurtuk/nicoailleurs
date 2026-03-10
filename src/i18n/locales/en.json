@@ -1,0 +1,31 @@
+{
+  "header": {
+    "home": "Home",
+    "stories": "Stories",
+    "countries": "Countries",
+    "cities": "Cities",
+    "guides": "Guides"
+  },
+  "home": {
+    "lastTrips": "Last trips"
+  },
+  "welcome": {
+    "title": "Welcome on Nico ailleurs !",
+    "presentation1": "Always passionate about both travel and writing, I blend the two in this blog to take you along with me on my adventures around the world.",
+    "presentation2": "A {{age}}-year-old software engineer, musician, and author of the novel <a>Philharmonia</a>, I seize every opportunity to escape and write a new story, sharing tips and experiences along the way. Care to join?"
+  },
+  "url": {
+    "countries": "countries",
+    "cities": "cities"
+  },
+  "trips": {
+    "title": "Mes voyages",
+    "back": "← Retour aux voyages"
+  },
+  "footer": {
+    "followInstagram": "Follow me on Instagram"
+  },
+  "cto": {
+    "allStories": "All stories"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "header": {
+    "home": "Accueil",
+    "stories": "Récits",
+    "countries": "Pays",
+    "cities": "Villes",
+    "guides": "Guides"
+  },
+  "home": {
+    "lastTrips": "Derniers voyages"
+  },
+  "welcome": {
+    "title": "Bienvenue sur Nico ailleurs\u00A0!",
+    "presentation1": "Passionné depuis toujours par les voyages comme par l’écriture, je mêle les deux dans ce blog pour vous faire vivre avec moi mes aventures partout dans le monde.",
+    "presentation2": "Ingénieur informatique de {{age}} ans, musicien, auteur du roman <a>Philharmonia</a>, je saisis chaque occasion de m’évader pour écrire une nouvelle histoire, et vous partager au passage quelques astuces et expériences. Vous venez\u00A0?"
+  },
+  "url": {
+    "countries": "pays",
+    "cities": "villes",
+    "stories": "recits"
+  },
+  "trips": {
+    "title": "Mes voyages",
+    "back": "← Retour aux voyages"
+  },
+  "footer": {
+    "followInstagram": "Suivez-moi sur Instagram"
+  },
+  "cto": {
+    "allStories": "Tous les récits"
+  }
+}

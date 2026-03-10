@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Lora:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+:root {
+  font-family: "Source Serif 4", serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Lora, serif;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button,
+.button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.8em 1.4em;
+  font-size: .9em;
+  font-family: Raleway;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  background-color: #d17b0f;
+  color: #fff;
+  cursor: pointer;
+  transition: color .3s;
+}
+.button:hover {
+  color: $main-color-light;
+}
+button:focus,
+button:focus-visible,
+.button:focus,
+.button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

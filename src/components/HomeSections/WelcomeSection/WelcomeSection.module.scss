@@ -1,0 +1,60 @@
+.wrapper {
+  background-color: #f6f2ef;
+  padding: 2rem;
+
+  > div {
+    max-width: 1200px;
+    display: flex;
+    margin: 0 auto;
+    gap: 2rem;
+  }
+}
+
+.text {
+  flex: 1;
+
+  h2 {
+    display: block;
+    font-family: Cookie, serif;
+    font-size: 4.5em;
+    color: $main-color;
+    margin: 1rem 0 .5rem;
+    transform: rotate(-.5deg);
+  }
+}
+
+.photo {
+  img {
+    width: 250px;
+    border-radius: 100%;
+  }
+}
+
+@media screen and (max-width: $screen-medium) {
+  .wrapper {
+    > div {
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+  }
+  .photo {
+    order: -1;
+
+    img {
+      width: 200px;
+    }
+  }
+  .text {
+    h2 {
+      text-align: center;
+      white-space: normal;
+      margin: 0;
+
+      &::before,
+      &::after {
+        content: unset;
+      }
+    }
+  }
+}

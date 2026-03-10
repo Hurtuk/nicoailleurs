@@ -1,0 +1,163 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 4rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $main-color;
+  color: #fff;
+}
+
+.logo {
+  width: 120px;
+  background-color: $main-color;
+  border: 1rem solid $main-color;
+  border-radius: 100%;
+  position: relative;
+  top: 2rem;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.navLink {
+  text-decoration: none;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c7c7c7;
+  transition: color 0.2s ease;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+
+  &:first-child {
+    display: none;
+  }
+}
+
+.navLink:hover {
+  color: #f5f0e8;
+}
+
+.navLink.active {
+  color: #c8a96e;
+  border-bottom-color: #c8a96e;
+}
+
+.burgerButton {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.burgerIcon {
+  width: 28px;
+  height: auto;
+}
+
+@media screen and (max-width: $screen-medium) {
+  .header {
+    padding: 0 1.5rem 0 .5rem;
+  }
+
+  .logo {
+    width: 80px;
+    top: 1rem;
+  }
+}
+
+@media screen and (max-width: $screen-small) {
+  .burgerButton {
+    display: block;
+    position: fixed;
+    top: 1.25rem;
+    left: 1.5rem;
+    z-index: 200;
+  }
+
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 3rem 1.5rem 1.5rem;
+    position: relative;
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: $main-color;
+      z-index: 1;
+      display: flex;
+      height: 0;
+      overflow: hidden;
+      padding-top: 64px;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      background-color: $main-color;
+      z-index: 1;
+
+      a {
+        width: 100%;
+        text-align: center;
+        padding: .5rem 0;
+
+        &:first-child {
+          display: block;
+        }
+      }
+
+      &.navOpen {
+        height: auto;
+        padding-bottom: 1rem;
+      }
+
+      + * {
+        position: fixed;
+        right: 1.5rem;
+        top: 1.25rem;
+        z-index: 2;
+      }
+    }
+  }
+  .brand {
+    order: 1;
+    width: calc(100% + 3rem);
+    background-color: #000;
+    margin: 1rem -1.5rem -1.5rem;
+    position: relative;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url(images/mobile-bg.jpg);
+      background-size: cover;
+      background-position: center;
+      opacity: .5;
+    }
+
+    .logo {
+      background-color: transparent;
+      border: 0;
+      max-width: 350px;
+      width: 80vw;
+      top: 0;
+    }
+  }
+}
