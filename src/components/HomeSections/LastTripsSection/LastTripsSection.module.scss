@@ -3,7 +3,7 @@
 
   &::before {
     content: '';
-    background: url(images/latest-bg.jpg);
+    background: url(/images/latest-bg.jpg);
     background-position: bottom;
     background-size: cover;
     position: absolute;
@@ -52,19 +52,13 @@
 
     h2 {
       display: block;
-      margin: 0;
-      padding: 2rem 0 1rem;
+      margin: 2rem 0 1rem;
       color: $main-color;
       font-size: 2em;
       white-space: nowrap;
       text-align: center;
 
-      &::before,
-      &::after {
-        content: '~';
-        display: inline-block;
-        margin: 0 .5em;
-      }
+      @include tildes;
     }
   }
 

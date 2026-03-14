@@ -14,10 +14,6 @@
     "presentation1": "Always passionate about both travel and writing, I blend the two in this blog to take you along with me on my adventures around the world.",
     "presentation2": "A {{age}}-year-old software engineer, musician, and author of the novel <a>Philharmonia</a>, I seize every opportunity to escape and write a new story, sharing tips and experiences along the way. Care to join?"
   },
-  "url": {
-    "countries": "countries",
-    "cities": "cities"
-  },
   "trips": {
     "title": "Mes voyages",
     "back": "← Retour aux voyages"

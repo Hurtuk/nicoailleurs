@@ -1,9 +1,10 @@
 .tripsWrapper {
   position: relative;
+  padding: 2rem;
 
   &::before {
     content: '';
-    background: url(images/latest-bg.jpg);
+    background: url(/images/latest-bg.jpg);
     background-position: bottom;
     background-size: cover;
     position: fixed;
@@ -20,10 +21,5 @@
   margin-top: 3rem;
   color: $main-color-light;
 
-  &::before,
-  &::after {
-    content: '~';
-    margin: 0 1rem;
-    opacity: .5;
-  }
+  @include tildes;
 }

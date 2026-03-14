@@ -1,0 +1,78 @@
+.citiesWrapper {
+  position: relative;
+  padding: 2rem;
+
+  &::before {
+    content: '';
+    background-image: url(/images/cities-bg.jpg);
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    opacity: .1;
+    filter: grayscale(.7);
+  }
+
+  > * {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .letters {
+    columns: 5;
+
+    @media screen and (max-width: $screen-big) {
+      columns: 4;
+    }
+
+    @media screen and (max-width: $screen-medium) {
+      columns: 3;
+    }
+
+    @media screen and (max-width: $screen-small) {
+      columns: 1;
+    }
+  }
+
+  .letter {
+    background-color: rgba(255, 255, 255, .8);
+    overflow: hidden;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 3px 4px 0px rgba(0, 0, 0, 0.25);
+
+    h2 {
+      background-color: $main-color-light;
+      color: white;
+      margin: 0;
+      padding: .5rem;
+      font-weight: normal;
+      text-transform: uppercase;
+      font-size: 1em;
+      letter-spacing: .15em;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 1rem;
+
+    a {
+      display: block;
+      text-align: center;
+      padding: .5em;
+      
+      &:hover {
+        box-shadow: 0 1px 10px -1px rgba(0, 0, 0, 0.25);
+        border-radius: .5rem;
+        background-color: #fff;
+      }
+    }
+  }
+}

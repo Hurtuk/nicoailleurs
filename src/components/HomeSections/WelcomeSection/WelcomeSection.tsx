@@ -1,10 +1,10 @@
 import styles from "./WelcomeSection.module.scss";
 import { Trans, useTranslation } from "react-i18next";
 
+const age = new Date().getFullYear() - 1991;
+
 export default function WelcomeSection() {
   const { t } = useTranslation();
-
-  const age = new Date().getFullYear() - 1991;
 
   return (
     <section className={styles.wrapper}>

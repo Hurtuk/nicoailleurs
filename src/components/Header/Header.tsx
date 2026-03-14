@@ -6,6 +6,10 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import useLocalizedPath from "../../hooks/useLocalizedPath";
 
+function isHome(pathname: string): boolean {
+  return ['/', '/fr', '/en'].includes(pathname);
+}
+
 export default function Header() {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,17 +17,16 @@ export default function Header() {
   const path = useLocalizedPath();
 
   useEffect(() => {
-    setMenuOpen(() => false)
+    setMenuOpen(false)
   }, [location]);
 
-  function isHome(pathname: string): boolean {
-    return pathname == '/' || pathname == '/fr' || pathname == '/en';
-  }
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `${styles.navLink} ${isActive ? styles.active : ""}`.trim();
   
   return (
     <header className={styles.header}>
       <NavLink to={path("/")} className={`${isHome(location.pathname) ? styles.homeBrand : styles.brand}`}>
-        <img src="images/logo-transparent.png" className={styles.logo} />
+        <img src="/images/logo-transparent.png" className={styles.logo} />
       </NavLink>
       <button
         className={styles.burgerButton}
@@ -33,19 +36,19 @@ export default function Header() {
         <img src="images/burger-bar.png" className={styles.burgerIcon} />
       </button>
       <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`}>
-        <NavLink to={path("/")} className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
+        <NavLink to={path("/")} className={navLinkClass}>
           {t('header.home')}
         </NavLink>
-        <NavLink to={path("trips")} className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
+        <NavLink to={path("trips")} className={navLinkClass}>
           {t('header.stories')}
         </NavLink>
-        <NavLink to={path("countries")} className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
+        <NavLink to={path("countries")} className={navLinkClass}>
           {t('header.countries')}
         </NavLink>
-        <NavLink to={path("cities")} className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
+        <NavLink to={path("cities")} className={navLinkClass}>
           {t('header.cities')}
         </NavLink>
-        <NavLink to={path("guides")} className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
+        <NavLink to={path("guides")} className={navLinkClass}>
           {t('header.guides')}
         </NavLink>
       </nav>

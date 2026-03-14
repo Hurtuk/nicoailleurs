@@ -5,4 +5,5 @@ export interface City {
   latitude: number;
   longitude: number;
   hideOnMap: boolean;
+  count?: number;
 }

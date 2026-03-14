@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { useNavigate } from "react-router-dom";
@@ -16,27 +16,26 @@ type Props = {
   countryConfig: Record<string, PlaceConfig>;
   markers?: PlaceConfig[]
 };
+  
+const dimensions = { width: 800, height: 400 };
 
 export default function WorldMap({ countryConfig, markers }: Props) {
   const navigate = useNavigate();
   const [tooltip, setTooltip] = useState<{ label: string; x: number; y: number } | null>(null);
-  
-  const dimensions = { width: 800, height: 400 };
 
-  const handleCountryClick = (geo: any) => {
-    const key = geo.properties.id;
-    const config = countryConfig[key];
+  const handleCountryClick = useCallback((geo: any) => {
+    const config = countryConfig[geo.id];
     if (config) navigate(config.url);
-  };
+  }, [countryConfig, navigate]);
 
-  const handleCityClick = (marker: any) => {
+  const handleCityClick = useCallback((marker: PlaceConfig) => {
     navigate(marker.url);
-  };
+  }, [navigate]);
 
-  const [rotations, setRotations] = useState([] as [string, number][]);
-  useEffect(() => {
-    setRotations(markers!.map(m => [m.url, (Math.random() * -28)]))
-  }, [markers]);
+  const rotations = useMemo(
+    () => markers?.map(m => [m.url, Math.random() * -28] as [string, number]) ?? [],
+    [markers]
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -106,12 +105,12 @@ export default function WorldMap({ countryConfig, markers }: Props) {
           >
             <g style={{position: 'relative'}}>
               <image
-                href="images/map-pin.png"
+                href="/images/map-pin.png"
                 width={12}
                 height={12}
                 x={-3}
                 y={-10.5}
-                transform={`rotate(${rotations?.find(r => r[0] == marker.url)?.[1] ?? 0}, -1.5, 0.28)`}
+                transform={`rotate(${rotations?.find(r => r[0] === marker.url)?.[1] ?? 0}, -1.5, 0.28)`}
               />
             </g>
           </Marker>

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, Outlet, Navigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { buildLocalizedUrl } from "../utils/buildLocalizedUrl";
@@ -9,7 +9,10 @@ export default function LocaleWrapper() {
   const { i18n } = useTranslation();
   const { pathname } = useLocation();
 
-  const resolvedLang = SUPPORTED_LANGS.includes(lang ?? "") ? lang! : "fr";
+  const resolvedLang = useMemo(
+    () => SUPPORTED_LANGS.includes(lang ?? "") ? lang! : "fr",
+    [lang]
+  );
 
   useEffect(() => {
     i18n.changeLanguage(resolvedLang);

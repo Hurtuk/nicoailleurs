@@ -8,7 +8,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use '${path.resolve('./src/styles/variables').replace(/\\/g, '/')}' as *;`,
+        additionalData: `@use '${path.resolve('./src/styles/variables').replace(/\\/g, '/')}' as *;
+        @use '${path.resolve('./src/styles/mixins').replace(/\\/g, '/')}' as *;`,
       },
     },
   },

@@ -7,11 +7,11 @@ type Props = {
   trip: Trip;
 };
 
+const root = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname) ? "https://nicoailleurs.com" : "";
+
 export default function TripCard({ trip }: Props) {
 
   const path = useLocalizedPath();
-
-  const root = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname) ? "https://nicoailleurs.com" : "";
 
   return (
     <Link to={path('trips', trip.id)} className={styles.card}>

@@ -3,4 +3,6 @@ export interface Country {
   codeAlpha2: string;
   name: string;
   path: string;
+  continent: string;
+  count?: number;
 }
