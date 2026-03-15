@@ -17,7 +17,7 @@ export default function HomePage() {
     return Object.fromEntries(
       countries.map(country => [
         country.num,
-        { label: country.name, url: path("countries", country.path) }
+        { label: country.name, url: path("countries", country.slug) }
       ])
     );
   }, [countries, path]);
@@ -26,7 +26,7 @@ export default function HomePage() {
     return cities
       .filter(city => !city.hideOnMap)
       .map(city => ({
-        url: path("cities", city.path),
+        url: path("cities", city.slug),
         label: city.name,
         coordinates: [city.longitude, city.latitude]
       }));

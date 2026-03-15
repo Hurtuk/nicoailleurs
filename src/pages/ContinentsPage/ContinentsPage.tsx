@@ -28,7 +28,7 @@ export default function ContinentsPage() {
           <ul>
             {countriesList.map((country) => (
               <li key={country.name}>
-                <Link to={path('countries', country.path)}>
+                <Link to={path('countries', country.slug)}>
                   {country.name}
                   {(country.count ?? 1) > 1 && ` (${country.count})`}
                 </Link>

@@ -25,12 +25,29 @@ export const getTrip = async (id: string | number, lang: string): Promise<Trip> 
 
 export const getVisitedCountries = async (lang: string): Promise<Country[]> => {
   const { data } = await axios.get<Country[]>(`${API_BASE}/getVisitedCountries.php/?lang=${lang}`);
-  return data;
+  return data.map(d => ({
+    ...d,
+    count: d.count ? parseInt("" + d.count) : undefined,
+    days: d.days ? parseInt("" + d.days) : undefined
+  }));
 };
 
 export const getVisitedCities = async (lang: string): Promise<City[]> => {
   const { data } = await axios.get<City[]>(`${API_BASE}/getVisitedCities.php/?lang=${lang}`);
-  return data;
+  return data.map(d => ({
+    ...d,
+    count: d.count ? parseInt("" + d.count) : undefined,
+    days: d.days ? parseInt("" + d.days) : undefined
+  }));
+};
+
+export const getCountry = async (lang: string, slug: string): Promise<Country> => {
+  const { data } = await axios.get<Country>(`${API_BASE}/getCountry.php/?lang=${lang}&country=${slug}`);
+  return {
+    ...data,
+    count: data.count ? parseInt("" + data.count) : undefined,
+    days: data.days ? parseInt("" + data.days) : undefined
+  };
 };
 
 function jsonToUrl(json: any) {

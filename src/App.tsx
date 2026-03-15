@@ -8,6 +8,7 @@ import "./App.scss";
 import Footer from "./components/Footer/Footer";
 import ContinentsPage from "./pages/ContinentsPage/ContinentsPage";
 import CitiesPage from "./pages/CitiesPage/CitiesPage";
+import CountryPage from "./pages/CountryPage/CountryPage";
 
 function App() {
   return (
@@ -23,9 +24,9 @@ function App() {
           <Route path="trips/:id" element={<TripPage />} />
           
           <Route path="pays" element={<ContinentsPage />} />
-          <Route path="pays/:id" element={<ContinentsPage />} />
+          <Route path="pays/:slug" element={<CountryPage />} />
           <Route path="countries" element={<ContinentsPage />} />
-          <Route path="countries/:id" element={<ContinentsPage />} />
+          <Route path="countries/:slug" element={<CountryPage />} />
           
           <Route path="villes" element={<CitiesPage />} />
           <Route path="villes/:id" element={<CitiesPage />} />

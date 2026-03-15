@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Lora:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Lora:ital,wght@0,400..700;1,400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+@import "flag-icons/css/flag-icons.min.css";
 
 :root {
   font-family: "Source Serif 4", serif;
@@ -44,8 +45,8 @@ button,
   border: 1px solid transparent;
   padding: 0.8em 1.4em;
   font-size: .9em;
-  font-family: Raleway;
-  text-transform: uppercase;
+  font-family: inherit;
+  font-weight: normal;
   letter-spacing: .05em;
   background-color: $secondary-color;
   color: #fff;
@@ -72,7 +73,7 @@ button:focus-visible,
     min-width: calc(25% - 1rem);
     flex: 0 1;
 
-    @media screen and (max-width: $screen-big) {
+    @media screen and (max-width: $screen-large) {
       min-width: calc(33.3% - 1rem);
     }
 

@@ -1,9 +1,10 @@
 export interface City {
   id: string;
-  path: string;
+  slug: string;
   name: string;
-  latitude: number;
-  longitude: number;
+  latitude: string;
+  longitude: string;
   hideOnMap: boolean;
   count?: number;
+  days?: number;
 }

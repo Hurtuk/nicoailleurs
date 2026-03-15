@@ -23,5 +23,12 @@
   },
   "cto": {
     "allStories": "All stories"
-  }
+  },
+  "country": {
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "cities": "Cities"
+  },
+  "noTrip": "No trip to display",
+  "readTheStory": "Read the story"
 }

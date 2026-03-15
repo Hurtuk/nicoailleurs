@@ -23,5 +23,12 @@
   },
   "cto": {
     "allStories": "Tous les récits"
-  }
+  },
+  "country": {
+    "days": "{{count}} jour",
+    "days_other": "{{count}} jours",
+    "cities": "Villes"
+  },
+  "noTrip": "Aucun voyage à afficher",
+  "readTheStory": "Lire le récit"
 }

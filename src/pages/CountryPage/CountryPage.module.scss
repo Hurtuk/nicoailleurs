@@ -1,0 +1,116 @@
+.countryWrapper {
+  @include page;
+
+  &::before {
+    background-image: url(/images/world.webp);
+  }
+
+  .countrySummary {
+    display: flex;
+    gap: 2rem;
+
+    > *:first-child {
+      flex: 1;
+    }
+  }
+
+  aside {
+    background-color: $bg-color;
+    width: 200px;
+    position: relative;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .25);
+    border-radius: .5rem;
+    padding: 3rem 1rem 1rem;
+    text-align: center;
+
+    > :first-child {
+      width: 100px;
+      aspect-ratio: 4/3;
+      position: absolute;
+      top: -50px;
+      left: calc(50% - 50px);
+      box-shadow: 0 4px 5px rgba(0, 0, 0, .25);
+    }
+
+    .days {
+      margin-bottom: 1rem;
+    }
+
+    .cities {
+      h2 {
+        @include tildes;
+        font-size: 1.2em;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        a {
+          padding: .25rem;
+          display: block;
+      
+          &:hover {
+            box-shadow: 0 1px 10px -1px rgba(0, 0, 0, 0.25);
+            border-radius: .5rem;
+            background-color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-large) {
+    .countrySummary {
+      flex-direction: column;
+    }
+
+    aside {
+      order: -1;
+      padding: 1rem 5rem 1rem 1rem;
+      width: auto;
+
+      > :first-child {
+        top: 1rem;
+        right: -1.5rem;
+        left: auto;
+        box-shadow: 0 4px 5px rgba(0, 0, 0, .25);
+      }
+
+      .cities {
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-small) {
+    aside {
+      order: -1;
+      padding: 0;
+      width: auto;
+      overflow: hidden;
+
+      > :first-child {
+        top: 0;
+        right: 0;
+        height: 3rem;
+        width: auto;
+        box-shadow: none;
+      }
+
+      .days {
+        margin-bottom: 0;
+        line-height: 3rem;
+      }
+
+      .cities {
+        display: none;
+      }
+    }
+  }
+}

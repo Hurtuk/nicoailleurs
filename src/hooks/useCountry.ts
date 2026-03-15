@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { getVisitedCountries } from "../api/tripsApi";
 import type { Country } from "../api/models/Country";
+import { getCountry } from "../api/tripsApi";
 
-interface UseVisitedCountriesResult {
-  countries: Country[];
+interface UseCountryResult {
+  country: Country;
   loading: boolean;
   error: string | null;
   refresh: () => void;
 }
 
-export default function useVisitedCountries(lang: string): UseVisitedCountriesResult {
-  const [countries, setCountries] = useState<Country[]>([]);
+export default function useCountry(lang: string, slug: string): UseCountryResult {
+  const [country, setCountry] = useState<Country>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [reloadTrigger, setReloadTrigger] = useState<number>(0);
@@ -20,23 +20,23 @@ export default function useVisitedCountries(lang: string): UseVisitedCountriesRe
   useEffect(() => {
     let isMounted = true;
 
-    const fetchTrips = async () => {
+    const fetchCountry = async () => {
         setLoading(true);
         setError(null);
 
-        const data = await getVisitedCountries(lang);
+        const data = await getCountry(lang, slug);
 
         if (isMounted) {
-          setCountries(data);
+          setCountry(data);
         }
     };
 
-    fetchTrips();
+    fetchCountry();
 
     return () => {
       isMounted = false;
     };
   }, [reloadTrigger, lang]);
 
-  return { countries, loading, error, refresh };
+  return { country: country!, loading, error, refresh };
 }

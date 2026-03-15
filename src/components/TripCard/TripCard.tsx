@@ -14,7 +14,7 @@ export default function TripCard({ trip }: Props) {
   const path = useLocalizedPath();
 
   return (
-    <Link to={path('trips', trip.id)} className={styles.card}>
+    <Link to={path('trips', trip.slug)} className={styles.card}>
       <div className={styles.imageWrapper}>
         <img src={root + "/photos/" + trip.id + "/cover.jpg"} alt={trip.title} className={styles.image} />
       </div>

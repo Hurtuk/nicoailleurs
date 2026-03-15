@@ -32,7 +32,7 @@ export default function CitiesPage() {
             <ul>
               {citiesList.map((city) => (
                 <li key={city.name}>
-                  <Link to={path('countries', city.path)}>
+                  <Link to={path('cities', city.slug)}>
                     {city.name}
                     {(city.count ?? 1) > 1 && ` (${city.count})`}
                   </Link>

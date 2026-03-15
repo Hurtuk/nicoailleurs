@@ -1,32 +1,14 @@
 .citiesWrapper {
-  position: relative;
-  padding: 2rem;
+  @include page;
 
   &::before {
-    content: '';
     background-image: url(/images/cities-bg.jpg);
-    background-size: cover;
-    background-position: center;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    opacity: .1;
-    filter: grayscale(.7);
-  }
-
-  > * {
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .letters {
     columns: 5;
 
-    @media screen and (max-width: $screen-big) {
+    @media screen and (max-width: $screen-large) {
       columns: 4;
     }
 

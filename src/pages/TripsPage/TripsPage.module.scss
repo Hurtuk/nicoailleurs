@@ -1,19 +1,13 @@
 .tripsWrapper {
-  position: relative;
-  padding: 2rem;
+  @include page;
 
   &::before {
-    content: '';
-    background: url(/images/latest-bg.jpg);
-    background-position: bottom;
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    background-image: url(/images/latest-bg.jpg);
     opacity: .1;
-    z-index: -1;
+  }
+
+  > * {
+    max-width: 1200px;
   }
 }
 
