@@ -9,7 +9,7 @@ import unaccentName from "../../utils/unaccentName";
 
 export default function CitiesPage() {
   const { i18n, t } = useTranslation();
-  const { cities } = useVisitedCities(i18n.language);
+  const { cities } = useVisitedCities(i18n.language, true);
   
   const path = useLocalizedPath();
 

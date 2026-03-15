@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { useNavigate } from "react-router-dom";

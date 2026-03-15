@@ -1,3 +1,6 @@
+import type { Country } from "./Country";
+import type { Trip } from "./Trip";
+
 export interface City {
   id: string;
   slug: string;
@@ -6,5 +9,7 @@ export interface City {
   longitude: string;
   hideOnMap: boolean;
   count?: number;
-  days?: number;
+  country?: Country;
+  trips?: Trip[];
+  cover?: string;
 }

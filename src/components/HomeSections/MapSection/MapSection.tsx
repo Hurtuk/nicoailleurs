@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import WorldMap, { type PlaceConfig } from "../../WorldMap/WorldMap";
 import styles from "./MapSection.module.scss";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import useVisitedCountries from "../../../hooks/useVisitedCountries";
 import useVisitedCities from "../../../hooks/useVisitedCities";
 import useLocalizedPath from "../../../hooks/useLocalizedPath";
@@ -9,7 +9,7 @@ import useLocalizedPath from "../../../hooks/useLocalizedPath";
 export default function HomePage() {
   const { i18n } = useTranslation();
   const { countries } = useVisitedCountries(i18n.language);
-  const { cities } = useVisitedCities(i18n.language);
+  const { cities } = useVisitedCities(i18n.language, false);
 
   const path = useLocalizedPath();
 
@@ -28,7 +28,7 @@ export default function HomePage() {
       .map(city => ({
         url: path("cities", city.slug),
         label: city.name,
-        coordinates: [city.longitude, city.latitude]
+        coordinates: [parseFloat(city.longitude), parseFloat(city.latitude)]
       }));
   }, [cities, path]);
 

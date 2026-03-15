@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer";
 import ContinentsPage from "./pages/ContinentsPage/ContinentsPage";
 import CitiesPage from "./pages/CitiesPage/CitiesPage";
 import CountryPage from "./pages/CountryPage/CountryPage";
+import CityPage from "./pages/CityPage/CityPage";
 
 function App() {
   return (
@@ -29,9 +30,9 @@ function App() {
           <Route path="countries/:slug" element={<CountryPage />} />
           
           <Route path="villes" element={<CitiesPage />} />
-          <Route path="villes/:id" element={<CitiesPage />} />
+          <Route path="villes/:slug" element={<CityPage />} />
           <Route path="cities" element={<CitiesPage />} />
-          <Route path="cities/:id" element={<CitiesPage />} />
+          <Route path="cities/:slug" element={<CityPage />} />
         </Route>
       </Routes>
       <Footer />

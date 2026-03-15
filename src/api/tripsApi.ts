@@ -32,12 +32,11 @@ export const getVisitedCountries = async (lang: string): Promise<Country[]> => {
   }));
 };
 
-export const getVisitedCities = async (lang: string): Promise<City[]> => {
-  const { data } = await axios.get<City[]>(`${API_BASE}/getVisitedCities.php/?lang=${lang}`);
+export const getVisitedCities = async (lang: string, all: boolean): Promise<City[]> => {
+  const { data } = await axios.get<City[]>(`${API_BASE}/getVisitedCities.php/?lang=${lang}${all ? "&all" : ""}`);
   return data.map(d => ({
     ...d,
-    count: d.count ? parseInt("" + d.count) : undefined,
-    days: d.days ? parseInt("" + d.days) : undefined
+    count: d.count ? parseInt("" + d.count) : undefined
   }));
 };
 
@@ -47,6 +46,14 @@ export const getCountry = async (lang: string, slug: string): Promise<Country> =
     ...data,
     count: data.count ? parseInt("" + data.count) : undefined,
     days: data.days ? parseInt("" + data.days) : undefined
+  };
+};
+
+export const getCity = async (lang: string, slug: string): Promise<City> => {
+  const { data } = await axios.get<City>(`${API_BASE}/getCity.php/?lang=${lang}&city=${slug}`);
+  return {
+    ...data,
+    count: data.count ? parseInt("" + data.count) : undefined
   };
 };
 

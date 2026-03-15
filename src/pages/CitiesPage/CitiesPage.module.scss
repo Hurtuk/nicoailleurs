@@ -1,12 +1,20 @@
 .citiesWrapper {
   @include page;
 
+  > * {
+    max-width: 1400px;
+  }
+
   &::before {
     background-image: url(/images/cities-bg.jpg);
   }
 
   .letters {
-    columns: 5;
+    columns: 6;
+
+    @media screen and (max-width: 1300px) {
+      columns: 5;
+    }
 
     @media screen and (max-width: $screen-large) {
       columns: 4;

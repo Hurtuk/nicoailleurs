@@ -1,0 +1,68 @@
+.cityWrapper {
+  @include page;
+  background-color: $bg-color;
+
+  h1 {
+    position: relative;
+    margin-bottom: 0;
+    margin-top: 2rem;
+
+    span {
+      position: absolute;
+      bottom: calc(100% + .5rem);
+      width: 1em;
+      left: calc(50% - 0.5em);
+    }
+
+    + a {
+      text-align: center;
+      display: block;
+      margin-bottom: 3rem;
+    }
+  }
+
+  .cover {
+    aspect-ratio: 1920/500;
+    max-width: unset;
+    max-height: 500px;
+    background-position: center;
+    background-size: cover;
+    margin: -2rem;
+    margin-bottom: -2.5rem;
+    opacity: .9;
+
+    + span {
+      position: absolute;
+    }
+
+    ~ h1 {
+      color: #fff;
+      text-shadow: 0 0 10px #000;
+      margin-top: 0;
+
+      &::before,
+      &::after {
+        filter: brightness(0) invert(1);
+        bottom: .25em;
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-large) {
+    .cover {
+      filter: none;
+    }
+  }
+
+  @media screen and (max-width: $screen-medium) {
+    .cover {
+      aspect-ratio: 1920/700;
+    }
+  }
+
+  @media screen and (max-width: $screen-medium) {
+    .cover {
+      aspect-ratio: 1920/900;
+    }
+  }
+}

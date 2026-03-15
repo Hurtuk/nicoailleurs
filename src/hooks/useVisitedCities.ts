@@ -9,7 +9,7 @@ interface UseVisitedCitiesResult {
   refresh: () => void;
 }
 
-export default function useVisitedCities(lang: string): UseVisitedCitiesResult {
+export default function useVisitedCities(lang: string, all: boolean): UseVisitedCitiesResult {
   const [cities, setCities] = useState<City[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +25,7 @@ export default function useVisitedCities(lang: string): UseVisitedCitiesResult {
         setLoading(true);
         setError(null);
 
-        const data = await getVisitedCities(lang);
+        const data = await getVisitedCities(lang, all);
 
         if (isMounted) {
           setCities(data);

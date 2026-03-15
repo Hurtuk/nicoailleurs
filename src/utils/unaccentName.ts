@@ -7,4 +7,5 @@ export default function unaccentName(name: string) {
     .replaceAll("Š", "S")
     .replaceAll("É", "E")
     .replaceAll("ç", "c")
+    .replaceAll("Î", "I")
 }

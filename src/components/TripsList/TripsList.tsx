@@ -3,12 +3,11 @@ import styles from "./TripsList.module.scss";
 import type { Trip } from "../../api/models/Trip";
 import useLocalizedPath from "../../hooks/useLocalizedPath";
 import { useTranslation } from "react-i18next";
+import { ROOT } from "../../utils/buildLocalizedUrl";
 
 type Props = {
   trips: Trip[] | undefined;
 };
-
-const root = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname) ? "https://nicoailleurs.com" : "";
 
 export default function TripsList({ trips }: Props) {
   const { t } = useTranslation();
@@ -19,7 +18,7 @@ export default function TripsList({ trips }: Props) {
     <ul className={styles.tripsListWrapper}>{
       trips?.map(trip => (
         <li key={trip.id}>
-          <div className={styles.preview} style={{ backgroundImage: `url(${root}/photos/${trip.id}/cover.jpg)` }}></div>
+          <div className={styles.preview} style={{ backgroundImage: `url(${ROOT}/photos/${trip.id}/cover.jpg)` }}></div>
           <div className={styles.data}>
             <span className={styles.tripTitle}>{trip.title}</span>
             <span className={styles.tripExcerpt}>{trip.excerpt}</span>

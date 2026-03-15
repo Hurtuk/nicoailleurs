@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 import styles from "./TripCard.module.scss";
 import type { Trip } from "../../api/models/Trip";
 import useLocalizedPath from "../../hooks/useLocalizedPath";
+import { ROOT } from "../../utils/buildLocalizedUrl";
 
 type Props = {
   trip: Trip;
 };
-
-const root = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname) ? "https://nicoailleurs.com" : "";
 
 export default function TripCard({ trip }: Props) {
 
@@ -16,7 +15,7 @@ export default function TripCard({ trip }: Props) {
   return (
     <Link to={path('trips', trip.slug)} className={styles.card}>
       <div className={styles.imageWrapper}>
-        <img src={root + "/photos/" + trip.id + "/cover.jpg"} alt={trip.title} className={styles.image} />
+        <img src={ROOT + "/photos/" + trip.id + "/cover.jpg"} alt={trip.title} className={styles.image} />
       </div>
       <div className={styles.content}>
         <span className={styles.country}>{trip.place}</span>
