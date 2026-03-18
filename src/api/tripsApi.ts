@@ -44,6 +44,7 @@ export const getCountry = async (lang: string, slug: string): Promise<Country> =
   const { data } = await axios.get<Country>(`${API_BASE}/getCountry.php/?lang=${lang}&country=${slug}`);
   return {
     ...data,
+    trips: data.trips?.map(t => ({ ...t, startDate: new Date(t.startDate)})),
     count: data.count ? parseInt("" + data.count) : undefined,
     days: data.days ? parseInt("" + data.days) : undefined
   };
@@ -53,6 +54,7 @@ export const getCity = async (lang: string, slug: string): Promise<City> => {
   const { data } = await axios.get<City>(`${API_BASE}/getCity.php/?lang=${lang}&city=${slug}`);
   return {
     ...data,
+    trips: data.trips?.map(t => ({ ...t, startDate: new Date(t.startDate)})),
     count: data.count ? parseInt("" + data.count) : undefined
   };
 };

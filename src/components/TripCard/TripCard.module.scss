@@ -1,24 +1,54 @@
+@use 'sass:color';
+
 .card {
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: inherit;
   border-radius: .5rem;
-  overflow: hidden;
   background: #fff;
   transition: transform 0.25s ease, border-color 0.25s ease;
   box-shadow: 0 3px 20px -5px rgba(0, 0, 0, .5);
+  max-width: 300px;
+  min-width: 275px;
+  position: relative;
+  text-align: left;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: #c8a96e;
+  }
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  border-color: #c8a96e;
+.dateTag {
+  position: absolute;
+  right: -.75rem;
+  top: 1rem;
+  background-color: $secondary-color;
+  color: #fff;
+  z-index: 2;
+  display: block;
+  padding: .125rem .5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+  font-weight: 400;
+  text-transform: capitalize;
+
+  &::after {
+    content: "";
+    position: absolute;
+    border-left: .75rem solid #9c5c0d;
+    border-bottom: .5rem solid transparent;
+    top: 100%;
+    right: 0;
+  }
 }
 
 .imageWrapper {
   position: relative;
-  height: 275px;
+  height: 240px;
   overflow: hidden;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
 }
 
 .image {

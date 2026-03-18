@@ -6,14 +6,15 @@ import { ROOT } from "../../utils/buildLocalizedUrl";
 
 type Props = {
   trip: Trip;
+  tag?: string;
 };
 
-export default function TripCard({ trip }: Props) {
-
+export default function TripCard({ trip, tag }: Props) {
   const path = useLocalizedPath();
 
   return (
     <Link to={path('trips', trip.slug)} className={styles.card}>
+      {tag && <span className={styles.dateTag}>{tag}</span>}
       <div className={styles.imageWrapper}>
         <img src={ROOT + "/photos/" + trip.id + "/cover.jpg"} alt={trip.title} className={styles.image} />
       </div>

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import useLocalizedPath from "../../hooks/useLocalizedPath";
 import useCountry from "../../hooks/useCountry";
 import styles from "./CountryPage.module.scss";
-import TripsList from "../../components/TripsList/TripsList";
+import TripCard from "../../components/TripCard/TripCard";
 
 export default function CountryPage() {
   const { i18n, t } = useTranslation();
@@ -17,7 +17,11 @@ export default function CountryPage() {
         <>
           <h1>{country.name}</h1>
           <div className={styles.countrySummary}>
-            <TripsList trips={country.trips} />
+            <div className={styles.trips}>
+              {country.trips?.map(trip =>
+                <TripCard key={trip.id} trip={trip} tag={trip.startDate.toLocaleDateString(i18n.language, { month: 'long', year: 'numeric' })} />
+              )}
+            </div>
             <aside>
               <span className={`fi fi-${country.codeAlpha2.toLowerCase()}`}></span>
               <div className={styles.days}>{t('country.days', { count: country.days })}</div>

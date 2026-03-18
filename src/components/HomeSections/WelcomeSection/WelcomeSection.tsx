@@ -19,7 +19,7 @@ export default function WelcomeSection() {
           /></p>
         </div>
         <div className={styles.photo}>
-          <img src="images/me.jpg" />
+          <img src="/images/me.jpg" />
         </div>
       </div>
     </section>

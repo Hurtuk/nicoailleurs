@@ -1,16 +1,29 @@
 .countryWrapper {
   @include page;
 
+  > * {
+    max-width: 1920px;
+  }
+
   &::before {
     background-image: url(/images/world.webp);
+  }
+
+  h1 {
+    margin-bottom: 3rem;
   }
 
   .countrySummary {
     display: flex;
     gap: 2rem;
+    align-items: flex-start;
 
-    > *:first-child {
+    .trips {
       flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
     }
   }
 
@@ -89,11 +102,14 @@
   }
 
   @media screen and (max-width: $screen-small) {
+    h1 {
+      margin-bottom: 1rem;
+    }
     aside {
       order: -1;
       padding: 0;
       width: auto;
-      overflow: hidden;
+      align-self: center;
 
       > :first-child {
         top: 0;

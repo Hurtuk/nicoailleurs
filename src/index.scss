@@ -26,7 +26,6 @@ h1 {
   line-height: 1.1;
   text-align: center;
   margin-top: 0;
-  white-space: nowrap;
   @include tildes;
 
   @media screen and (max-width: $screen-small) {
@@ -70,8 +69,8 @@ button:focus-visible,
   justify-content: center;
 
   > * {
-    min-width: calc(25% - 1rem);
-    flex: 0 1;
+    width: calc(25% - 1rem);
+    flex: 1;
 
     @media screen and (max-width: $screen-large) {
       min-width: calc(33.3% - 1rem);

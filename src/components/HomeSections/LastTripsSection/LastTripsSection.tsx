@@ -6,6 +6,14 @@ import styles from "./LastTripsSection.module.scss";
 import { Link } from "react-router-dom";
 import useLocalizedPath from "../../../hooks/useLocalizedPath";
 import { useTranslation } from "react-i18next";
+import type { Trip } from "../../../api/models/Trip";
+
+function isNew(trip: Trip) {
+  const now = new Date();
+  const limit = new Date(now);
+  limit.setMonth(limit.getMonth() - 2);
+  return trip.endDate >= limit;
+}
 
 export default function LastTripsSection() {
   const { t } = useTranslation();
@@ -19,8 +27,8 @@ export default function LastTripsSection() {
     <section className={styles.wrapper}>
       <h2>{t('home.lastTrips')}</h2>
       <div className={styles.cards}>
-        {trips.map(trip => 
-          <TripCard key={trip.id} trip={trip} />
+        {trips.map(trip =>
+          <TripCard key={trip.id} trip={trip} tag={isNew(trip) ? t('new') : undefined} />
         )}
       </div>
       <div className={styles.cto}>

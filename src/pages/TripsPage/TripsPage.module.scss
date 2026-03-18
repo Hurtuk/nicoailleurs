@@ -1,5 +1,6 @@
 .tripsWrapper {
   @include page;
+  text-align: center;
 
   &::before {
     background-image: url(/images/latest-bg.jpg);
@@ -7,7 +8,11 @@
   }
 
   > * {
-    max-width: 1200px;
+    max-width: 1920px;
+  }
+
+  h1 + div h2 {
+    margin-top: 0;
   }
 }
 
@@ -16,4 +21,9 @@
   color: $main-color-light;
 
   @include tildes;
+}
+
+.oldTrip {
+  display: inline-block;
+  margin: 0 2rem;
 }

@@ -24,14 +24,14 @@ export default function TripsPage() {
       {Object.entries(tripsByYear)
         .sort(([y1], [y2]) => y2.localeCompare(y1))
         .map(([year, tripsList]) => (
-          <React.Fragment key={year}>
+          <div key={year} className={tripsList.length <= 2 ? styles.oldTrip : ''}>
             <h2 className={styles.year}>{year}</h2>
             <div className="trips-wrapper">
               {tripsList.map((trip) => (
-                <TripCard key={trip.id} trip={trip} />
+                <TripCard key={trip.id} trip={trip} tag={trip.startDate.toLocaleDateString(i18n.language, { month: 'long' })} />
               ))}
             </div>
-          </React.Fragment>
+          </div>
         ))}
     </div>
   );

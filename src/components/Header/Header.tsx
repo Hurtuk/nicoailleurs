@@ -33,7 +33,7 @@ export default function Header() {
         onClick={() => setMenuOpen(o => !o)}
         aria-label="Menu"
       >
-        <img src="images/burger-bar.png" className={styles.burgerIcon} />
+        <img src="/images/burger-bar.png" className={styles.burgerIcon} />
       </button>
       <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`}>
         <NavLink to={path("/")} className={navLinkClass}>
