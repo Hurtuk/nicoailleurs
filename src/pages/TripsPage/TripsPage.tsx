@@ -4,7 +4,6 @@ import TripCard from "../../components/TripCard/TripCard";
 import { useTranslation } from "react-i18next";
 import type { Trip } from "../../api/models/Trip";
 import styles from "./TripsPage.module.scss";
-import React from "react";
 
 export default function TripsPage() {
   const { i18n, t } = useTranslation();

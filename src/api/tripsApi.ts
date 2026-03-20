@@ -14,8 +14,8 @@ export const getTrips = async (lang: string, filters?: any): Promise<Trip[]> => 
   }));
 };
 
-export const getTrip = async (id: string | number, lang: string): Promise<Trip> => {
-  const { data } = await axios.get<Trip>(`${API_BASE}/getTrip.php?id=${id}&lang=${lang}`);
+export const getTrip = async (slug: string, lang: string): Promise<Trip> => {
+  const { data } = await axios.get<Trip>(`${API_BASE}/getTrip.php?trip=${slug}&lang=${lang}`);
   return {
     ...data,
     startDate: new Date(data.startDate),

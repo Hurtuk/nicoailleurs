@@ -1,0 +1,21 @@
+.cityCountry {
+  display: block;
+  width: fit-content;
+  margin: 0 auto .5rem;
+  background-color: rgba(0, 0, 0, .8);
+  text-transform: uppercase;
+  color: $secondary-color-light;
+  position: relative;
+  padding: .25rem 1rem;
+  border-radius: 1rem;
+
+  span {
+    width: 1em;
+    height: 0.77em;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: .5rem;
+    position: relative;
+    top: -2px;
+  }
+}

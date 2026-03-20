@@ -1,3 +1,5 @@
+import type { Country } from "./Country";
+
 export interface Trip {
   id: string;
   title: string;
@@ -6,4 +8,5 @@ export interface Trip {
   startDate: Date;
   endDate: Date;
   slug: string;
+  countries: Country[];
 }

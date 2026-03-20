@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import { getTrip } from "../api/tripsApi";
 import type { Trip } from "../api/models/Trip";
 
-export default function useTrip(id: string | number, lang: string) {
+export default function useTrip(slug: string, lang: string) {
   const [trip, setTrip] = useState<Trip | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!id) return;
+    if (!slug) return;
 
     setLoading(true);
-    getTrip(id, lang)
+    getTrip(slug, lang)
       .then((data) => setTrip(data))
-      .catch(() => setError("Erreur de chargement"))
+      .catch(() => setError("Loading error"))
       .finally(() => setLoading(false));
-  }, [id]);
+  }, [slug, lang]);
 
   return { trip, loading, error };
 }
