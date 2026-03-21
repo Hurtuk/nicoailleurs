@@ -20,7 +20,7 @@ function findRouteKey(segment: string): RouteKey | null {
 }
 
 export function buildLocalizedUrl(pathname: string, targetLang: Lang): string {
-  const segments = pathname.split("/").filter(Boolean);
+  const segments = pathname.split('/').filter(Boolean);
 
   // Retirer le préfixe de langue s'il existe
   if (SUPPORTED_LANGS.includes(segments[0])) {

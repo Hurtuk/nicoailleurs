@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import styles from './TripPage.module.scss';
 import { ROOT } from "../../utils/buildLocalizedUrl";
 import CountryTag from "../../components/CountryTag/CountryTag";
+import TripSummary from "../../components/TripSummary/TripSummary";
 
 export default function TripPage() {
   const { i18n } = useTranslation();
@@ -17,26 +18,18 @@ export default function TripPage() {
           <div className={styles.banner} style={{ backgroundImage: `url(${ROOT}/photos/${trip.id}/banner.jpg)` }}>
             <div>
               {trip.countries.map(country => 
-                <CountryTag country={country} />
+                <CountryTag key={country.slug} country={country} />
               )}
             </div>
             <h1>{trip.title}</h1>
+            <div className={styles.dates}>
+              <span>{trip.startDate.toLocaleDateString(i18n.language, { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+              →
+              <span>{trip.endDate.toLocaleDateString(i18n.language, { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+            </div>
           </div>
           <div className={styles.tripDetail}>
-            <div className={styles.summary}>
-              <div>
-                <h2>Durée</h2>
-                <span>17 jours</span>
-              </div>
-              <div>
-                <h2>Voyageurs</h2>
-                <span>2 personnes</span>
-              </div>
-              <div>
-                <h2>Budget total</h2>
-                <span>3&nbsp;450&nbsp;€</span>
-              </div>
-            </div>
+            <TripSummary trip={trip} />
           </div>
         </>
       )}

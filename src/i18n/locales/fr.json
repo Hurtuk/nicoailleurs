@@ -31,5 +31,16 @@
   },
   "noTrip": "Aucun voyage à afficher",
   "readTheStory": "Lire le récit",
-  "new": "Nouveau"
+  "new": "Nouveau",
+  "trip": {
+    "duration": "Durée",
+    "travelers": "Voyageurs",
+    "days": "{{count}} jour",
+    "days_other": "{{count}} jours",
+    "people": "Solo",
+    "people_other": "{{count}} personnes",
+    "total_budget": "Budget total",
+    "budget_per_person": "Budget par personne",
+    "seeBudget": "Voir le détail"
+  }
 }

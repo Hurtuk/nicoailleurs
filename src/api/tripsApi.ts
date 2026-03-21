@@ -27,8 +27,8 @@ export const getVisitedCountries = async (lang: string): Promise<Country[]> => {
   const { data } = await axios.get<Country[]>(`${API_BASE}/getVisitedCountries.php/?lang=${lang}`);
   return data.map(d => ({
     ...d,
-    count: d.count ? parseInt("" + d.count) : undefined,
-    days: d.days ? parseInt("" + d.days) : undefined
+    count: d.count ? parseInt('' + d.count) : undefined,
+    days: d.days ? parseInt('' + d.days) : undefined
   }));
 };
 
@@ -36,7 +36,7 @@ export const getVisitedCities = async (lang: string, all: boolean): Promise<City
   const { data } = await axios.get<City[]>(`${API_BASE}/getVisitedCities.php/?lang=${lang}${all ? "&all" : ""}`);
   return data.map(d => ({
     ...d,
-    count: d.count ? parseInt("" + d.count) : undefined
+    count: d.count ? parseInt('' + d.count) : undefined
   }));
 };
 
@@ -45,8 +45,8 @@ export const getCountry = async (lang: string, slug: string): Promise<Country> =
   return {
     ...data,
     trips: data.trips?.map(t => ({ ...t, startDate: new Date(t.startDate)})),
-    count: data.count ? parseInt("" + data.count) : undefined,
-    days: data.days ? parseInt("" + data.days) : undefined
+    count: data.count ? parseInt('' + data.count) : undefined,
+    days: data.days ? parseInt('' + data.days) : undefined
   };
 };
 
@@ -55,7 +55,7 @@ export const getCity = async (lang: string, slug: string): Promise<City> => {
   return {
     ...data,
     trips: data.trips?.map(t => ({ ...t, startDate: new Date(t.startDate)})),
-    count: data.count ? parseInt("" + data.count) : undefined
+    count: data.count ? parseInt('' + data.count) : undefined
   };
 };
 

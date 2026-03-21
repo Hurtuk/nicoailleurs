@@ -31,5 +31,16 @@
   },
   "noTrip": "No trip to display",
   "readTheStory": "Read the story",
-  "new": "New"
+  "new": "New",
+  "trip": {
+    "duration": "Duration",
+    "travelers": "Travelers",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "people_one": "Solo",
+    "people_other": "{{count}} people",
+    "total_budget": "Total budget",
+    "budget_per_person": "Budget per person",
+    "seeBudget": "See details"
+  }
 }

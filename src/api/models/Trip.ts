@@ -1,3 +1,4 @@
+import type { Budget } from "./Budget";
 import type { Country } from "./Country";
 
 export interface Trip {
@@ -9,4 +10,7 @@ export interface Trip {
   endDate: Date;
   slug: string;
   countries: Country[];
+  days: number;
+  people: number;
+  budgets: Budget[];
 }
