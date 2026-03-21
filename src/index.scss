@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Caveat:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
 @import "flag-icons/css/flag-icons.min.css";
 
 :root {
@@ -16,6 +16,10 @@ a {
 }
 a:hover {
   color: $secondary-color;
+}
+
+.leaflet-container {
+  filter: grayscale(50%);
 }
 
 h1 {

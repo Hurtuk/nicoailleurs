@@ -41,6 +41,13 @@
     "people_other": "{{count}} people",
     "total_budget": "Total budget",
     "budget_per_person": "Budget per person",
-    "seeBudget": "See details"
+    "seeBudget": "See details",
+    "tableOfContents": "Table of contents",
+    "D": "D",
+    "cities": "Cities",
+    "back": "← Back to summary",
+    "chapter": "Chapter",
+    "previous": "← Previous",
+    "next": "Next →"
   }
 }

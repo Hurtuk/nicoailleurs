@@ -1,0 +1,13 @@
+.cities {
+  h2 {
+    color: $main-color;
+    @include tildes;
+  }
+
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+}

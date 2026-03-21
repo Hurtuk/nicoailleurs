@@ -1,15 +1,16 @@
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import useTrip from "../../hooks/useTrip";
 import { useTranslation } from "react-i18next";
 import styles from './TripPage.module.scss';
 import { ROOT } from "../../utils/buildLocalizedUrl";
 import CountryTag from "../../components/CountryTag/CountryTag";
 import TripSummary from "../../components/TripSummary/TripSummary";
+import TableOfContents from "../../components/TableOfContents/TableOfContents";
 
 export default function TripPage() {
   const { i18n } = useTranslation();
-  const { id } = useParams<{ id: string }>();
-  const { trip } = useTrip(id!, i18n.language);
+  const { slug } = useParams<{ slug: string }>();
+  const { trip } = useTrip(slug!, i18n.language);
 
   return (
     <div className={styles.tripWrapper}>
@@ -31,6 +32,12 @@ export default function TripPage() {
           <div className={styles.tripDetail}>
             <TripSummary trip={trip} />
           </div>
+          <section>
+            <TableOfContents trip={trip} />
+            <div>
+              <Outlet context={{trip}} />
+            </div>
+          </section>
         </>
       )}
     </div>

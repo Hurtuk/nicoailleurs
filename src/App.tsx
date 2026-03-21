@@ -10,6 +10,8 @@ import ContinentsPage from "./pages/ContinentsPage/ContinentsPage";
 import CitiesPage from "./pages/CitiesPage/CitiesPage";
 import CountryPage from "./pages/CountryPage/CountryPage";
 import CityPage from "./pages/CityPage/CityPage";
+import ChapterPage from "./pages/trip/ChapterPage/ChapterPage";
+import TripHomepage from "./pages/trip/TripHomepage/TripHomepage";
 
 function App() {
   return (
@@ -20,9 +22,15 @@ function App() {
           <Route index element={<HomePage />} />
           
           <Route path="voyages" element={<TripsPage />} />
-          <Route path="voyages/:id" element={<TripPage />} />
+          <Route path="voyages/:slug" element={<TripPage />}>
+            <Route path="" element={<TripHomepage />} />
+            <Route path=":chapterIndex" element={<ChapterPage />} />
+          </Route>
           <Route path="trips" element={<TripsPage />} />
-          <Route path="trips/:id" element={<TripPage />} />
+          <Route path="trips/:slug" element={<TripPage />}>
+            <Route path="" element={<TripHomepage />} />
+            <Route path=":chapterIndex" element={<ChapterPage />} />
+          </Route>
           
           <Route path="pays" element={<ContinentsPage />} />
           <Route path="pays/:slug" element={<CountryPage />} />

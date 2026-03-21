@@ -23,7 +23,7 @@ export default function TripSummary({ trip }: Props) {
         <h2>{t('trip.travelers')}</h2>
         <span>{t('trip.people', { count: trip.people })}</span>
       </div>
-      {trip.budgets?.length && (
+      {trip.budgets?.length ? (
         <div className={styles.budget}>
           <h2>{t(trip.people > 1 ? 'trip.budget_per_person' : 'trip.total_budget')}</h2>
           <div>
@@ -31,7 +31,7 @@ export default function TripSummary({ trip }: Props) {
             <button>{t('trip.seeBudget')}</button>
           </div>
         </div>
-      )}
+      ) : ''}
     </div>
   );
 }

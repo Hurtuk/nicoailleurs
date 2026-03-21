@@ -4,6 +4,10 @@
   background-image: url(/images/map-bg5.jpeg);
   background-size: cover;
 
+  > * {
+    max-width: 1200px;
+  }
+
   .banner {
     box-sizing: border-box;
     width: calc(100% + 4rem);
@@ -18,6 +22,13 @@
     > div {
       display: flex;
       gap: 1rem;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+
+      a {
+        margin: 0;
+      }
     }
 
     h1 {
@@ -59,10 +70,35 @@
     }
   }
 
+  section {
+    display: flex;
+    gap: 2rem;
+
+    > :nth-child(2) {
+      flex: 1;
+      margin-top: 2rem;
+    }
+  }
+
+  @media screen and (max-width: $screen-large) {
+    section {
+      flex-direction: column;
+      gap: 2rem;
+
+      > :nth-child(2) {
+        margin-top: 0;
+      }
+    }
+  }
+
   @media screen and (max-width: $screen-medium) {
     .banner {
       height: 250px;
       font-size: .8em;
+
+      .dates {
+        font-size: 1.5em;
+      }
     }
   }
 

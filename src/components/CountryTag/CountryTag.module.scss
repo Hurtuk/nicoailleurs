@@ -18,4 +18,10 @@
     position: relative;
     top: -2px;
   }
+
+  @media screen and (max-width: $screen-medium) {
+    font-size: 1.5em;
+    position: relative;
+    top: -.5rem;
+  }
 }

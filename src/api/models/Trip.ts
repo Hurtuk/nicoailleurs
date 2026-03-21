@@ -1,4 +1,6 @@
 import type { Budget } from "./Budget";
+import type { Chapter } from "./Chapter";
+import type { City } from "./City";
 import type { Country } from "./Country";
 
 export interface Trip {
@@ -13,4 +15,6 @@ export interface Trip {
   days: number;
   people: number;
   budgets: Budget[];
+  chapters: Chapter[];
+  cities: City[];
 }
