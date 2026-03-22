@@ -10,4 +10,40 @@
     position: relative;
     margin-top: 2rem;
   }
+
+  table {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+
+  tbody tr {
+    &:nth-child(odd) {
+      background-color: #fff;
+    }
+  }
+
+  td, th {
+    padding: .24em;
+
+    &:not(:first-child) {
+      min-width: 100px;
+      width: 150px;
+      text-align: right;
+    }
+  }
+
+  tfoot {
+    border-top: 1px solid gray;
+  }
+
+  @media screen and (max-width: $screen-small) {
+    td, th {
+      &:not(:first-child) {
+        width: 70px;
+      }
+    }
+  }
 }

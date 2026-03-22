@@ -5,4 +5,7 @@ export interface Chapter {
   city?: string;
   citySlug?: string;
   date?: Date;
+  nights?: number;
+  place?: string;
+  stayedUrl?: string;
 }

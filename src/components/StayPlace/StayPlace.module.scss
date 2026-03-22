@@ -1,0 +1,15 @@
+.placeWrapper {
+  padding: .25rem 2rem;
+  background-color: $secondary-color-light;
+  color: #fff;
+  display: flex;
+  gap: 1rem;
+  opacity: .8;
+  margin: 1rem -2rem;
+  align-items: center;
+
+  img {
+    height: 1.2em;
+    filter: brightness(5);
+  }
+}

@@ -4,6 +4,7 @@ import type { Trip } from "../../../api/models/Trip";
 import styles from './ChapterPage.module.scss';
 import { useTranslation } from "react-i18next";
 import { formatContent } from "../../../utils/formatContent";
+import StayPlace from "../../../components/StayPlace/StayPlace";
 
 export default function ChapterPage() {
   const { t } = useTranslation();
@@ -22,7 +23,9 @@ export default function ChapterPage() {
         <span>{`${t('trip.chapter')} ${chapter.number}`}</span>
         {chapter.title}
       </h2>
+      {!chapter.date && chapter.place && <StayPlace nights={chapter.nights} place={chapter.place} stayedUrl={chapter.stayedUrl} />}
       {formatContent(chapter.content)}
+      {chapter.date && chapter.place && <StayPlace nights={chapter.nights} place={chapter.place} stayedUrl={chapter.stayedUrl} />}
       <footer>
         <Link to={`../${chapter.number - 1}`}>{chapter.number > 1 && t('trip.previous')}</Link>
         <Link to={`../${chapter.number + 1}`}>{chapter.number < trip.chapters.length && t('trip.next')}</Link>

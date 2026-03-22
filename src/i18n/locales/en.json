@@ -48,6 +48,14 @@
     "back": "← Back to summary",
     "chapter": "Chapter",
     "previous": "← Previous",
-    "next": "Next →"
+    "next": "Next →",
+    "budget": {
+      "title": "",
+      "cost": "Cost",
+      "costPerPerson": "Per pers.",
+      "total": "Total"
+    },
+    "nights_one": "{{nights}} nuit",
+    "nights_other": "{{nights}} nuits"
   }
 }
