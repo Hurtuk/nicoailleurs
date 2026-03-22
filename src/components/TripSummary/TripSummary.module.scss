@@ -75,14 +75,15 @@
       display: flex;
       gap: 1rem;
       
-      button {
+      a {
         padding: 0 .5rem;
         border-radius: .25rem;
         background-color: $secondary-color-light;
         font-size: .8em;
         opacity: .8;
-        height: 1.8em;
+        line-height: 2em;
         margin-top: .5em;
+        color: #fff;
       }
     }
   }

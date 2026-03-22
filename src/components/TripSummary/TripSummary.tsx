@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 import styles from './TripSummary.module.scss';
 import { useCurrency } from "../../hooks/useCurrency";
 import type { Trip } from "../../api/models/Trip";
+import { Link } from "react-router-dom";
+import useLocalizedPath from "../../hooks/useLocalizedPath";
 
 type Props = {
   trip: Trip;
@@ -10,6 +12,7 @@ type Props = {
 export default function TripSummary({ trip }: Props) {
   const { t } = useTranslation();
   const formatCurrency = useCurrency();
+  const path = useLocalizedPath();
 
   const totalBudget = (trip?.budgets?.reduce((total, budget) => total + budget.amount, 0) ?? 0) / trip.people;
 
@@ -28,7 +31,7 @@ export default function TripSummary({ trip }: Props) {
           <h2>{t(trip.people > 1 ? 'trip.budget_per_person' : 'trip.total_budget')}</h2>
           <div>
             <span>{formatCurrency(totalBudget)}</span>
-            <button>{t('trip.seeBudget')}</button>
+            <Link to={"budget"}>{t('trip.seeBudget')}</Link>
           </div>
         </div>
       ) : ''}
