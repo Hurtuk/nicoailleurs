@@ -33,7 +33,7 @@ export default function TripPage() {
             <TripSummary trip={trip} />
           </div>
           <section>
-            <TableOfContents trip={trip} />
+            {!!trip.chapters?.length && <TableOfContents trip={trip} />}
             <div>
               <Outlet context={{trip}} />
             </div>

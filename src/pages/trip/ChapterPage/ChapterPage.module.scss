@@ -3,6 +3,12 @@
   padding: 1rem 2rem;
   border-radius: 1rem;
   overflow: hidden;
+  position: relative;
+
+  .anchor {
+    position: absolute;
+    top: -100px;
+  }
 
   h2 {
     @include tildes;
@@ -20,8 +26,48 @@
     }
   }
 
+  p {
+    img {
+      max-width: 70%;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+
+  .dayData {
+    display: flex;
+    justify-content: space-between;
+    font-size: .9em;
+
+    * {
+      color: $main-color-light;
+    }
+
+    span:not(:empty) {
+      background-repeat: no-repeat;
+      background-size: contain;
+      padding-left: 1.5em;
+      background-position: left;
+
+      &:first-child {
+        background-image: url(/icons/calendar.png);
+      }
+      &:nth-child(2) {
+        background-image: url(/icons/place.png);
+      }
+    }
+  }
+
   footer {
     display: flex;
     justify-content: space-between;
+  }
+
+  @media screen and (max-width: $screen-small) {
+    p {
+      img {
+        max-width: 100%;
+      }
+    }
   }
 }

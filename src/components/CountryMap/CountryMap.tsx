@@ -1,8 +1,8 @@
 // TripMap.tsx
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import type { City } from "../../api/models/City";
 import styles from './CountryMap.module.scss';
 
@@ -27,6 +27,14 @@ export default function TripMap({
   itinerary = false,
   itineraryColor = "#e53e3e",
 }: TripMapProps) {
+  function SingleCityView({ lat, lng }: { lat: number; lng: number }) {
+    const map = useMap();
+    useEffect(() => {
+      map.setView([lat, lng], 6); // 6 = vue pays, ajuste selon ton goût
+    }, [lat, lng, map]);
+    return null;
+  }
+
   const positions = useMemo(
     () => cities.map((c) => ({
       ...c,
@@ -49,10 +57,14 @@ export default function TripMap({
 
   if (positions.length === 0) return null;
 
+  const isSingleCity = positions.length === 1;
+
   return (
     <MapContainer
-      bounds={bounds}
-      boundsOptions={{ padding: [100, 100] }}
+      {...(isSingleCity
+        ? { center: [positions[0].lat, positions[0].lng], zoom: 5 }
+        : { bounds, boundsOptions: { padding: [100, 100] } }
+      )}
       style={{ height }}
       className={styles.mapWrapper}
       scrollWheelZoom={false}
@@ -61,6 +73,11 @@ export default function TripMap({
         attribution='&copy; <a href="https://carto.com/">CartoDB</a>'
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
+
+      {/* Forcer le zoom via le hook useMap (plus fiable que les props) */}
+      {isSingleCity && (
+        <SingleCityView lat={positions[0].lat} lng={positions[0].lng} />
+      )}
 
       {positions.map((city) => (
         <Marker key={city.id} position={[city.lat, city.lng]}>

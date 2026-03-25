@@ -33,6 +33,14 @@ export default function TripSummary({ trip }: Props) {
           </div>
         </div>
       ) : ''}
+      {trip.album && (
+        <div className={styles.album}>
+          <h2>{t(trip.people > 1 ? 'trip.album' : 'trip.album')}</h2>
+          <Link to={trip.album} target="_blank">
+            <img src="/icons/photos.png" />
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

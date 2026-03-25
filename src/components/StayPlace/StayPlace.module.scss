@@ -1,5 +1,4 @@
 .placeWrapper {
-  padding: .25rem 2rem;
   background-color: $secondary-color-light;
   color: #fff;
   display: flex;
@@ -11,5 +10,47 @@
   img {
     height: 1.2em;
     filter: brightness(5);
+    margin: .25rem 0 .25rem 2rem;
+  }
+
+  span {
+    display: block;
+    margin: .5rem 0;
+    flex: 1;
+  }
+
+  a {
+    color: #fff;
+    padding: .25rem 1rem;
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $main-color-light;
+
+    &.booking {
+      background-color: #013B95;
+    }
+
+    &.airbnb {
+      background-color: #FF385C;
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-image: url(/icons/link.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-left: .75rem;
+    }
+  }
+
+  @media screen and (max-width: $screen-small) {
+    img {
+      margin-left: 1rem;
+    }
   }
 }

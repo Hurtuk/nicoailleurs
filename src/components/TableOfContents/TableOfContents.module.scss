@@ -11,7 +11,6 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    overflow: hidden;
 
     li {
       &:not(:last-child) {
@@ -26,6 +25,7 @@
         position: relative;
         cursor: pointer;
         transition: .2s;
+        border-radius: .5rem;
 
         &::after {
           content: ">";
@@ -39,6 +39,14 @@
 
         &:hover {
           background-color: #fff;
+        }
+
+        &.active {
+          transform: scale(1.05);
+          background-color: #fff;
+          box-shadow: 0 0px 15px -5px rgba(0, 0, 0, 0.5);
+          position: relative;
+          z-index: 1;
         }
       }
     }

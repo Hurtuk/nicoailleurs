@@ -23,6 +23,10 @@ export const getTrip = async (slug: string, lang: string): Promise<Trip> => {
     budgets: data.budgets.map(budget => ({
       ...budget,
       forOne: budget.forOne.toString() === '1'
+    })),
+    chapters: data.chapters.map(chapter => ({
+      ...chapter,
+      date: chapter.date ? new Date(chapter.date) : undefined
     }))
   };
 };

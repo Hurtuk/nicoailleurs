@@ -73,8 +73,10 @@
   section {
     display: flex;
     gap: 2rem;
+    justify-content: center;
 
-    > :nth-child(2) {
+    > :nth-child(2),
+    > div:only-child {
       flex: 1;
       margin-top: 2rem;
     }

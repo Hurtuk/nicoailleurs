@@ -17,4 +17,5 @@ export interface Trip {
   budgets: Budget[];
   chapters: Chapter[];
   cities: City[];
+  album?: string;
 }

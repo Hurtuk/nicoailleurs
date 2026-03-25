@@ -88,6 +88,24 @@
     }
   }
 
+  .album {
+    padding-left: 0;
+
+    &::before {
+      content: unset;
+    }
+
+    a {
+      display: block;
+    }
+
+    img {
+      height: 1.8em;
+      display: block;
+      margin: .25rem auto 0;
+    }
+  }
+
   @media screen and (max-width: $screen-medium) {
     flex-wrap: wrap;
     justify-content: space-between;

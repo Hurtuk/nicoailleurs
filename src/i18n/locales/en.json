@@ -55,7 +55,9 @@
       "costPerPerson": "Per pers.",
       "total": "Total"
     },
-    "nights_one": "{{nights}} nuit",
-    "nights_other": "{{nights}} nuits"
-  }
+    "nights_one": "{{count}} night",
+    "nights_other": "{{count}} nights",
+    "album": "Photos"
+  },
+  "link": "Link"
 }
