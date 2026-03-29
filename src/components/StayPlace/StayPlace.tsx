@@ -12,7 +12,7 @@ type Props = {
 export default function StayPlace({ nights, stayedUrl, place }: Props) {
   const { t } = useTranslation();
 
-  const website = stayedUrl?.indexOf('booking') !== -1 ? 'Booking' : stayedUrl?.indexOf('airbnb') !== -1 ? 'Aribnb' : t('link');
+  const website = stayedUrl?.indexOf('booking') !== -1 ? 'Booking' : stayedUrl?.indexOf('airbnb') !== -1 ? 'Airbnb' : t('link');
 
   return (
     <div className={styles.placeWrapper}>

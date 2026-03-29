@@ -17,9 +17,10 @@
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    justify-content: center;
+    padding-left: 100px;
 
     .trips {
-      flex: 1;
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
@@ -29,7 +30,7 @@
 
   aside {
     background-color: $bg-color;
-    width: 200px;
+    min-width: 200px;
     position: relative;
     box-shadow: 0 4px 5px rgba(0, 0, 0, .25);
     border-radius: .5rem;
@@ -77,6 +78,8 @@
   @media screen and (max-width: $screen-large) {
     .countrySummary {
       flex-direction: column;
+      align-items: center;
+      padding-left: 0;
     }
 
     aside {
@@ -108,6 +111,7 @@
     aside {
       order: -1;
       padding: 0;
+      min-width: unset;
       width: auto;
       align-self: center;
 

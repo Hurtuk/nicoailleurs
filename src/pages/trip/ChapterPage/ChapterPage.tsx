@@ -1,4 +1,3 @@
-// ChapterPage.tsx
 import { useParams, useOutletContext, Link } from "react-router-dom";
 import type { Trip } from "../../../api/models/Trip";
 import styles from './ChapterPage.module.scss';
@@ -36,11 +35,11 @@ export default function ChapterPage() {
         {chapter.title}
       </h2>
       <div className={styles.dayData}>
-        <span>{chapter.date?.toLocaleDateString(i18n.language, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+        <span>{chapter.date?.toLocaleDateString(i18n.language, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
         <span>{chapter.city && <Link to={path("cities", chapter.citySlug)} className={styles.backLink}>{chapter.city}</Link>}</span>
       </div>
       {!chapter.date && chapter.place && <StayPlace nights={chapter.nights} place={chapter.place} stayedUrl={chapter.stayedUrl} />}
-      {formatContent(trip.id, chapter.content)}
+      {formatContent(trip.id, chapter.content, chapter.cityFrom, chapter.cityTo, chapter.transport)}
       {chapter.date && chapter.place && <StayPlace nights={chapter.nights} place={chapter.place} stayedUrl={chapter.stayedUrl} />}
       <footer>
         <Link to={`../${chapter.number - 1}`}>{chapter.number > 1 && t('trip.previous')}</Link>

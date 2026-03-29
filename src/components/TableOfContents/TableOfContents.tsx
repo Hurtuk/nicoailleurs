@@ -14,12 +14,15 @@ export default function TableOfContents({ trip }: Props) {
     `${isActive ? styles.active : ""}`.trim();
 
   const allHaveDates = trip.chapters.filter(c => !!c.date).length === trip.chapters.length - 2;
+  const cities = trip.chapters.map((chapter, index) => 
+    index === 0 || chapter.city !== trip.chapters[index - 1].city ? chapter.city : ''
+  );
 
   return (
     <div className={styles.tableOfContentsWrapper}>
       <h2>{t('trip.tableOfContents')}</h2>
       <ul>
-        {trip.chapters.map(chapter => (
+        {trip.chapters.map((chapter, index) => (
           <li key={chapter.number}>
             <NavLink to={`${chapter.number}`} className={navLinkClass}>
               <span>{
@@ -29,7 +32,7 @@ export default function TableOfContents({ trip }: Props) {
               }</span>
               <div>
                 <h3>{chapter.title}</h3>
-                <p>{chapter.city}</p>
+                <p>{cities[index]}</p>
               </div>
               <span className={styles.chapterDate}>{chapter.date?.toLocaleDateString(i18n.language, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
             </NavLink>

@@ -12,7 +12,7 @@ export default function TripSummary({ trip }: Props) {
   const { t } = useTranslation();
   const formatCurrency = useCurrency();
 
-  const totalBudget = (trip?.budgets?.reduce((total, budget) => total + budget.amount, 0) ?? 0) / trip.people;
+  const totalBudget = trip.budgets.reduce((acc, current) => acc + (current.forOne ? current.amount : current.amount / trip.people), 0);
 
   return (
     <div className={styles.tripSummary}>

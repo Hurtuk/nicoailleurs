@@ -8,4 +8,7 @@ export interface Chapter {
   nights?: number;
   place?: string;
   stayedUrl?: string;
+  cityFrom?: string;
+  cityTo?: string;
+  transport?: string;
 }
