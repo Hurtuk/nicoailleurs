@@ -1,5 +1,5 @@
 .hikeWrapper {
-  background-color: $secondary-color-light;
+  background-color: $secondary-color;
   color: #fff;
   display: flex;
   gap: 1rem;
@@ -8,15 +8,45 @@
   align-items: center;
 
   img {
-    height: 1.2em;
+    height: 1.5rem;
     filter: brightness(5);
     margin: .25rem 0 .25rem 2rem;
   }
 
-  span {
+  div {
     display: block;
     margin: .5rem 0;
     flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    align-items: center;
+
+    > span {
+      &:first-child {
+        flex: 1;
+        min-width: 250px;
+      }
+
+      &:not(:first-child) { 
+        font-size: 1.2em;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          vertical-align: middle;
+          width: 1.5rem;
+          height: 1.5rem;
+          background: url(/icons/itinerary.png) no-repeat center center;
+          background-size: contain;
+          margin-right: .5rem;
+        }
+
+        &:nth-child(3)::before {
+          background-image: url(/icons/height.png);
+        }
+      }
+    }
   }
 
   a {
@@ -25,16 +55,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #fff;
     background-color: $main-color-light;
 
     &.visorando {
-      background-color: #CDBDB1;
-      color: $main-color;
+      background-color: #986F57;
     }
 
     &.alltrails {
       background-color: #161F13;
-      color: #fff;
+    }
+    
+    &.visorando,
+    &.alltrails {
+      &::after {
+        background-image: url(/icons/link.png);
+      }
     }
 
     &::after {

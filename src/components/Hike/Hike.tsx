@@ -7,8 +7,8 @@ import { ROOT } from "../../utils/buildLocalizedUrl";
 type Props = {
   title: string;
   url: string;
-  distance: string;
-  height: string;
+  distance: number;
+  height: number;
   idTrip?: string;
 };
 
@@ -19,11 +19,11 @@ export default function Hike({ title, url, distance, height, idTrip }: Props) {
 
   return (
     <div className={styles.hikeWrapper}>
-      <img src="/icons/bed.png" />
+      <img src="/icons/hike.png" />
       <div>
         <span>{title}</span>
-        <span>{distance}m</span>
-        <span>{height}m D+</span>
+        <span>{distance.toLocaleString()} km</span>
+        <span>{height.toLocaleString()} m D+</span>
       </div>
       <Link to={url.indexOf('http') ? url : `${ROOT}/photos/${idTrip}/${url}`} target="_blank" className={styles[website.toLocaleLowerCase()]}>
         {website}

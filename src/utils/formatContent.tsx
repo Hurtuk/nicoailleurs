@@ -54,10 +54,9 @@ function travel(normalized: string, i: number, cityFrom: string | undefined, cit
 }
 
 function hike(normalized: string, i: number, idTrip: string) {
-  const hikeMatch = normalized.match(/\[hike ([^\]]+)\]/);
+  const hikeMatch = normalized.match(/\[hike ([^\]]+) (\d+(?:\.\d+)?) (\d+) (.*)\]/);
   if (hikeMatch) {
-    const data = hikeMatch[1].split(" ");
-    return <Hike key={i} title={data[0]} distance={data[1]} height={data[2]} url={data[3]} idTrip={idTrip} />
+    return <Hike key={i} title={hikeMatch[1]} distance={parseFloat(hikeMatch[2])} height={parseInt(hikeMatch[3])} url={hikeMatch[4]} idTrip={idTrip} />
   }
   return null;
 }
