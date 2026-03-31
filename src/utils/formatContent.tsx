@@ -1,4 +1,5 @@
 import Gallery from "../components/Gallery/Gallery";
+import Hike from "../components/Hike/Hike";
 import Travel from "../components/Travel/Travel";
 import { ROOT } from "./buildLocalizedUrl";
 
@@ -9,29 +10,54 @@ export function formatContent(tripId: string, content: string, cityFrom: string 
     .map((paragraph, i) => {
       // Ligne [gallery fichier1.jpg fichier2.jpg ...]
       const normalized = paragraph.replace(/\u00A0/g, ' ').trim();
-      const galleryMatch = normalized.match(/^\[gallery ([^\]]+)\]$/);
-      if (galleryMatch) {
-        const images = galleryMatch[1]
-          .split(/\s+/)
-          .filter(Boolean)
-          .map(filename => `${ROOT}/photos/${tripId}/${filename}`);
-        if (images[0].endsWith("mp4") || images[0].endsWith("3gp")) {
-          return <video controls style={{display: 'block', maxHeight: '400px', margin: '0 auto'}}>
-            <source src={images[0]} type="video/mp4" />
-          </video>;
-        } else {
-          return <Gallery key={i} images={images} />;
-        }
-      } else {
-        const travelMatch = normalized.match(/\[travel\]/);
-        if (travelMatch && cityFrom && cityTo && transport) {
-          return <Travel key={i} cityFrom={cityFrom} cityTo={cityTo} transport={transport} />
-        } else {
-          paragraph = paragraph.replace(/ ([:?!;])/g, "\u00A0$1");
-        }
-      }
+
+      let content = gallery(normalized, i, tripId);
+      if (content !== null) return content;
+
+      content = travel(normalized, i, cityFrom, cityTo, transport);
+      if (content !== null) return content;
+
+      content = hike(normalized, i, tripId);
+      if (content !== null) return content;
+
+      paragraph = paragraph.replace(/ ([:?!;])/g, "\u00A0$1");
 
       // Paragraphe texte classique avec éventuels [img ...]
       return <p key={i} dangerouslySetInnerHTML={{ __html: paragraph }} />;
     });
+}
+
+function gallery(normalized: string, i:number, tripId: string) {
+  const galleryMatch = normalized.match(/^\[gallery ([^\]]+)\]$/);
+  if (galleryMatch) {
+    const images = galleryMatch[1]
+      .split(/\s+/)
+      .filter(Boolean)
+      .sort((img1, img2) => img1.localeCompare(img2))
+      .map(filename => `${ROOT}/photos/${tripId}/${filename}`);
+    if (images[0].endsWith("mp4") || images[0].endsWith("3gp")) {
+      return <video controls style={{display: 'block', maxHeight: '400px', margin: '0 auto'}}>
+        <source src={images[0]} type="video/mp4" />
+      </video>;
+    }
+    return <Gallery key={i} images={images} />;
+  }
+  return null;
+}
+
+function travel(normalized: string, i: number, cityFrom: string | undefined, cityTo: string | undefined, transport: string | undefined) {
+  const travelMatch = normalized.match(/\[travel\]/);
+  if (travelMatch && cityFrom && cityTo && transport) {
+    return <Travel key={i} cityFrom={cityFrom} cityTo={cityTo} transport={transport} />
+  }
+  return null;
+}
+
+function hike(normalized: string, i: number, idTrip: string) {
+  const hikeMatch = normalized.match(/\[hike ([^\]]+)\]/);
+  if (hikeMatch) {
+    const data = hikeMatch[1].split(" ");
+    return <Hike key={i} title={data[0]} distance={data[1]} height={data[2]} url={data[3]} idTrip={idTrip} />
+  }
+  return null;
 }

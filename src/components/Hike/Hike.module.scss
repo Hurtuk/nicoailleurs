@@ -1,0 +1,57 @@
+.hikeWrapper {
+  background-color: $secondary-color-light;
+  color: #fff;
+  display: flex;
+  gap: 1rem;
+  opacity: .8;
+  margin: 1rem -2rem;
+  align-items: center;
+
+  img {
+    height: 1.2em;
+    filter: brightness(5);
+    margin: .25rem 0 .25rem 2rem;
+  }
+
+  span {
+    display: block;
+    margin: .5rem 0;
+    flex: 1;
+  }
+
+  a {
+    padding: .25rem 1rem;
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $main-color-light;
+
+    &.visorando {
+      background-color: #CDBDB1;
+      color: $main-color;
+    }
+
+    &.alltrails {
+      background-color: #161F13;
+      color: #fff;
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-image: url(/icons/link.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-left: .75rem;
+    }
+  }
+
+  @media screen and (max-width: $screen-small) {
+    img {
+      margin-left: 1rem;
+    }
+  }
+}

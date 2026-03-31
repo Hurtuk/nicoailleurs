@@ -59,5 +59,6 @@
     "nights_other": "{{count}} nights",
     "album": "Photos"
   },
-  "link": "Link"
+  "link": "Link",
+  "gpx": "GPX"
 }

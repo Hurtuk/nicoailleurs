@@ -18,26 +18,38 @@ export default function TableOfContents({ trip }: Props) {
     index === 0 || chapter.city !== trip.chapters[index - 1].city ? chapter.city : ''
   );
 
+  let chapterNumber = 0;
+
   return (
     <div className={styles.tableOfContentsWrapper}>
       <h2>{t('trip.tableOfContents')}</h2>
       <ul>
-        {trip.chapters.map((chapter, index) => (
-          <li key={chapter.number}>
-            <NavLink to={`${chapter.number}`} className={navLinkClass}>
-              <span>{
-                allHaveDates
-                ? (chapter.number == 1 || chapter.number == trip.chapters.length ? '' : (t("trip.D") + (chapter.number - 1)))
-                : chapter.number
-              }</span>
-              <div>
-                <h3>{chapter.title}</h3>
-                <p>{cities[index]}</p>
-              </div>
-              <span className={styles.chapterDate}>{chapter.date?.toLocaleDateString(i18n.language, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-            </NavLink>
-          </li>
-        ))}
+        {trip.chapters.map((chapter, index, chapters) => {
+          let numberToDisplay: string | number = '';
+          if (chapter.number != 1 && chapter.number != chapters.length) {
+            if (allHaveDates) {
+              if (chapters[index - 1].date?.getDate() != chapter.date?.getDate()) {
+                chapterNumber++;
+              }
+              numberToDisplay = t("trip.D") + chapterNumber;
+            } else {
+              chapterNumber++;
+              numberToDisplay = chapterNumber;
+            }
+          }
+          return (
+            <li key={chapter.number}>
+              <NavLink to={`${chapter.number}`} className={navLinkClass}>
+                <span>{numberToDisplay}</span>
+                <div>
+                  <h3>{chapter.title}</h3>
+                  <p>{cities[index]}</p>
+                </div>
+                <span className={styles.chapterDate}>{chapter.date?.toLocaleDateString(i18n.language, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              </NavLink>
+            </li>
+          )
+        })}
       </ul>
     </div>
   );
