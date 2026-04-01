@@ -7,6 +7,10 @@ type Props = {
   trip: Trip;
 }
 
+function datediff(first: Date, second: Date): number {        
+    return Math.round((second.getTime() - first.getTime()) / (1000 * 60 * 60 * 24));
+}
+
 export default function TableOfContents({ trip }: Props) {
   const { i18n, t } = useTranslation();
 
@@ -29,7 +33,7 @@ export default function TableOfContents({ trip }: Props) {
           if (chapter.number != 1 && chapter.number != chapters.length) {
             if (allHaveDates) {
               if (chapters[index - 1].date?.getDate() != chapter.date?.getDate()) {
-                chapterNumber++;
+                chapterNumber += !chapters[index - 1].date ? 1 : datediff(chapters[index - 1].date!, chapter.date!);
               }
               numberToDisplay = t("trip.D") + chapterNumber;
             } else {
