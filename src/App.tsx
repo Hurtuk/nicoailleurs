@@ -13,12 +13,14 @@ import CityPage from "./pages/CityPage/CityPage";
 import ChapterPage from "./pages/trip/ChapterPage/ChapterPage";
 import TripHomepage from "./pages/trip/TripHomepage/TripHomepage";
 import CostsPage from "./pages/trip/CostsPage/CostsPage";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
-      <Routes>  
+      <Routes>
         <Route path="/:lang?" element={<LocaleWrapper />}>
           <Route index element={<HomePage />} />
           

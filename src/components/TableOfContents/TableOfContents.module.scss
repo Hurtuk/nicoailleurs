@@ -47,6 +47,10 @@
           box-shadow: 0 0px 15px -5px rgba(0, 0, 0, 0.5);
           position: relative;
           z-index: 1;
+
+          .sameDay::after {
+            content: unset;
+          }
         }
       }
     }
@@ -60,6 +64,33 @@
       display: block;
       font-size: 1.2em;
       box-shadow: 0 0px 15px -5px rgba(0, 0, 0, 0.5);
+
+      &.sameDay {
+        position: relative;
+
+        &::before {
+          content: '';
+          display: block;
+          width: .75rem;
+          height: .75rem;
+          border-radius: 100%;
+          background-color: $secondary-color;
+          position: absolute;
+          left: calc(50% - .375rem);
+          top: calc(50% - .375rem);
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          height: 50px;
+          border-right: .125rem dotted $secondary-color;
+          top: -50px;
+          left: calc(50% - .5px);
+          z-index: 0;
+          opacity: .6;
+        }
+      }
     }
 
     h3 {

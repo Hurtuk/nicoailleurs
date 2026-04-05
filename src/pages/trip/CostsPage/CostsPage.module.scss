@@ -41,6 +41,7 @@
     td, th {
       &:not(:first-child) {
         width: 70px;
+        min-width: 70px;
       }
     }
   }

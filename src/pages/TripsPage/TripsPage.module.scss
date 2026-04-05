@@ -27,3 +27,10 @@
   display: inline-block;
   margin: 0 2rem;
 }
+
+@media screen and (max-width: $screen-small) {
+  .oldTrip {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

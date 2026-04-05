@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom";
 import styles from './Hike.module.scss';
 import { useTranslation } from "react-i18next";
-import { ROOT } from "../../utils/buildLocalizedUrl";
 
 type Props = {
   title: string;
@@ -23,9 +22,9 @@ export default function Hike({ title, url, distance, height, idTrip }: Props) {
       <div>
         <span>{title}</span>
         <span>{distance.toLocaleString()} km</span>
-        <span>{height.toLocaleString()} m D+</span>
+        <span>{height.toLocaleString()} m</span>
       </div>
-      <Link to={url.indexOf('http') ? url : `${ROOT}/photos/${idTrip}/${url}`} target="_blank" className={styles[website.toLocaleLowerCase()]}>
+      <Link to={url.indexOf('http') !== -1 ? url : `/photos/${idTrip}/${url}`} target="_blank" className={styles[website.toLocaleLowerCase()]}>
         {website}
       </Link>
     </div>

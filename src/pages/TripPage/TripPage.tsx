@@ -6,11 +6,21 @@ import { ROOT } from "../../utils/buildLocalizedUrl";
 import CountryTag from "../../components/CountryTag/CountryTag";
 import TripSummary from "../../components/TripSummary/TripSummary";
 import TableOfContents from "../../components/TableOfContents/TableOfContents";
+import { useEffect } from "react";
 
 export default function TripPage() {
   const { i18n } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const { trip } = useTrip(slug!, i18n.language);
+
+  useEffect(() => {
+    if (trip) {
+      document.title = `${trip.title} — Nico ailleurs`;
+    }
+    return () => {
+      document.title = "Nico ailleurs";
+    }
+  }, [trip]);
 
   return (
     <div className={styles.tripWrapper}>

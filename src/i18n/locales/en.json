@@ -31,7 +31,7 @@
   },
   "noTrip": "No trip to display",
   "readTheStory": "Read the story",
-  "new": "New",
+  "new": "New!",
   "trip": {
     "duration": "Duration",
     "travelers": "Travelers",
@@ -60,5 +60,10 @@
     "album": "Photos"
   },
   "link": "Link",
-  "gpx": "GPX"
+  "gpx": "GPX",
+  "share": {
+    "facebook": "Share this page on Facebook",
+    "messenger": "Share this page on Messenger",
+    "instagram": "Share this page on Instagram"
+  }
 }

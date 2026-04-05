@@ -72,6 +72,11 @@ button:focus-visible,
   flex-wrap: wrap;
   justify-content: center;
 
+  @media screen and (max-width: $screen-medium) {
+    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
+  }
+
   > * {
     width: calc(25% - 1rem);
     flex: 1;

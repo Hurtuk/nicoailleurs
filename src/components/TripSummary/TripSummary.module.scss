@@ -122,4 +122,16 @@
       }
     }
   }
+
+  @media screen and (max-width: $screen-medium) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    h2 {
+      + span,
+      + div span {
+        font-size: 1.2em;
+      }
+    }
+  }
 }

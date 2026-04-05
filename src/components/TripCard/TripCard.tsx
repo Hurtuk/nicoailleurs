@@ -3,6 +3,8 @@ import styles from "./TripCard.module.scss";
 import type { Trip } from "../../api/models/Trip";
 import useLocalizedPath from "../../hooks/useLocalizedPath";
 import { ROOT } from "../../utils/buildLocalizedUrl";
+import { useTranslation } from "react-i18next";
+import { grammarRules } from "../../utils/formatContent";
 
 type Props = {
   trip: Trip;
@@ -10,6 +12,7 @@ type Props = {
 };
 
 export default function TripCard({ trip, tag }: Props) {
+  const { i18n } = useTranslation();
   const path = useLocalizedPath();
 
   return (
@@ -20,7 +23,7 @@ export default function TripCard({ trip, tag }: Props) {
       </div>
       <div className={styles.content}>
         <span className={styles.country}>{trip.place}</span>
-        <h3 className={styles.title}>{trip.title}</h3>
+        <h3 className={styles.title}>{grammarRules(i18n.language, trip.title)}</h3>
         <p className={styles.excerpt}>{trip.excerpt}</p>
       </div>
     </Link>

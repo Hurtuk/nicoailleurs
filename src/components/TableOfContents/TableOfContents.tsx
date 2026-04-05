@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import styles from './TableOfContents.module.scss';
 import type { Trip } from "../../api/models/Trip";
 import { NavLink } from "react-router-dom";
+import { grammarRules } from "../../utils/formatContent";
 
 type Props = {
   trip: Trip;
@@ -30,12 +31,16 @@ export default function TableOfContents({ trip }: Props) {
       <ul>
         {trip.chapters.map((chapter, index, chapters) => {
           let numberToDisplay: string | number = '';
+          let sameDay = false;
           if (chapter.number != 1 && chapter.number != chapters.length) {
             if (allHaveDates) {
               if (chapters[index - 1].date?.getDate() != chapter.date?.getDate()) {
                 chapterNumber += !chapters[index - 1].date ? 1 : datediff(chapters[index - 1].date!, chapter.date!);
+                numberToDisplay = t("trip.D") + chapterNumber;
+              } else {
+                sameDay = true;
+                numberToDisplay = "";
               }
-              numberToDisplay = t("trip.D") + chapterNumber;
             } else {
               chapterNumber++;
               numberToDisplay = chapterNumber;
@@ -44,9 +49,9 @@ export default function TableOfContents({ trip }: Props) {
           return (
             <li key={chapter.number}>
               <NavLink to={`${chapter.number}`} className={navLinkClass}>
-                <span>{numberToDisplay}</span>
+                <span className={sameDay ? styles.sameDay : ''}>{numberToDisplay}</span>
                 <div>
-                  <h3>{chapter.title}</h3>
+                  <h3>{grammarRules(i18n.language, chapter.title)}</h3>
                   <p>{cities[index]}</p>
                 </div>
                 <span className={styles.chapterDate}>{chapter.date?.toLocaleDateString(i18n.language, { day: 'numeric', month: 'long', year: 'numeric' })}</span>

@@ -3,7 +3,17 @@ import Hike from "../components/Hike/Hike";
 import Travel from "../components/Travel/Travel";
 import { ROOT } from "./buildLocalizedUrl";
 
-export function formatContent(tripId: string, content: string, cityFrom: string | undefined, cityTo: string | undefined, transport: string | undefined) {
+export function grammarRules(language: string, paragraph: string) {
+  if (language === 'fr') {
+    paragraph = paragraph.replace(/"([^"]+)"/g, "«\u00A0$1\u00A0»");
+  }
+
+  paragraph = paragraph.replace(/ ([:?!;»])/g, "\u00A0$1");
+  paragraph = paragraph.replace(/« /g, "«\u00A0");
+  return paragraph;
+}
+
+export function formatContent(language: string, tripId: string, content: string, cityFrom: string | undefined, cityTo: string | undefined, transport: string | undefined) {
   return content
     .split(/\n+/)
     .filter(Boolean)
@@ -20,7 +30,7 @@ export function formatContent(tripId: string, content: string, cityFrom: string 
       content = hike(normalized, i, tripId);
       if (content !== null) return content;
 
-      paragraph = paragraph.replace(/ ([:?!;])/g, "\u00A0$1");
+      paragraph = grammarRules(language, paragraph);
 
       // Paragraphe texte classique avec éventuels [img ...]
       return <p key={i} dangerouslySetInnerHTML={{ __html: paragraph }} />;
@@ -54,7 +64,7 @@ function travel(normalized: string, i: number, cityFrom: string | undefined, cit
 }
 
 function hike(normalized: string, i: number, idTrip: string) {
-  const hikeMatch = normalized.match(/\[hike ([^\]]+) (\d+(?:\.\d+)?) (\d+) (.*)\]/);
+  const hikeMatch = normalized.match(/\[hike ([^\]]+) (\d+(?:[.,]\d+)?) (\d+) (.*)\]/);
   if (hikeMatch) {
     return <Hike key={i} title={hikeMatch[1]} distance={parseFloat(hikeMatch[2])} height={parseInt(hikeMatch[3])} url={hikeMatch[4]} idTrip={idTrip} />
   }

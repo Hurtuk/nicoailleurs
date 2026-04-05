@@ -31,7 +31,7 @@
   },
   "noTrip": "Aucun voyage à afficher",
   "readTheStory": "Lire le récit",
-  "new": "Nouveau",
+  "new": "Nouveau !",
   "trip": {
     "duration": "Durée",
     "travelers": "Voyageurs",
@@ -60,5 +60,10 @@
     "album": "Photos"
   },
   "link": "Lien",
-  "gpx": "GPX"
+  "gpx": "GPX",
+  "share": {
+    "facebook": "Partager cette page sur Facebook",
+    "messenger": "Partager cette page sur Messenger",
+    "instagram": "Partager cette page sur Instagram"
+  }
 }
