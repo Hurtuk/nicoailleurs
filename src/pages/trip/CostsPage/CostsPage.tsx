@@ -4,16 +4,24 @@ import type { Trip } from "../../../api/models/Trip";
 import styles from './CostsPage.module.scss';
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "../../../hooks/useCurrency";
+import { useEffect, useRef } from "react";
 
 export default function ChapterPage() {
   const { t } = useTranslation();
   const { trip } = useOutletContext<{ trip: Trip }>();
   const formatCurrency = useCurrency();
 
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
   const total = trip.budgets.reduce((acc, current) => acc + (current.forOne ? current.amount : current.amount / trip.people), 0);
+
+  useEffect(() => {
+    wrapperRef.current?.scrollIntoView({ behavior: "smooth" })
+  }, [total]);
 
   return (
     <div className={styles.costsWrapper}>
+      <div className={styles.anchor} ref={wrapperRef}></div>
       <Link to=".." className={styles.backLink}>{t('trip.back')}</Link>
       <h2>{t('trip.total_budget')}</h2>
       <table>

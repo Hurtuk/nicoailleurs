@@ -2,6 +2,7 @@ import type { Budget } from "./Budget";
 import type { Chapter } from "./Chapter";
 import type { City } from "./City";
 import type { Country } from "./Country";
+import type { Tag } from "./Tag";
 
 export interface Trip {
   id: string;
@@ -18,4 +19,5 @@ export interface Trip {
   chapters: Chapter[];
   cities: City[];
   album?: string;
+  tags: Tag[];
 }

@@ -1,6 +1,6 @@
 import { SUPPORTED_LANGS } from "../i18n";
 
-export const ROOT = "https://louiecinephile.fr/nicoailleurs";
+export const CDN = "https://louiecinephile.fr/nicoailleurs";
 
 export const ROUTES: {[lang: string]: any} = {
   fr: { "/": "", countries: "pays", cities: "villes", trips: "voyages", guides: "guides" },

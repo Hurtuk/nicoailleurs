@@ -22,12 +22,9 @@ export default function ChapterPage() {
   useEffect(() => {
     setVisible(false);
     const show = setTimeout(() => setVisible(true), 50);
-    const scroll = setTimeout(() =>
-      wrapperRef.current?.scrollIntoView({ behavior: "smooth" }), 150
-    );
+    wrapperRef.current?.scrollIntoView({ behavior: "smooth" })
     return () => {
       clearTimeout(show);
-      clearTimeout(scroll);
     };
   }, [index]);
 

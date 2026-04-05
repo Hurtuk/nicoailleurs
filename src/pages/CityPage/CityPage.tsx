@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./CityPage.module.scss";
 import useCity from "../../hooks/useCity";
-import { ROOT } from "../../utils/buildLocalizedUrl";
+import { CDN } from "../../utils/buildLocalizedUrl";
 import TripCard from "../../components/TripCard/TripCard";
 import CountryTag from "../../components/CountryTag/CountryTag";
 
@@ -16,7 +16,7 @@ export default function CityPage() {
       {city && (
         <>
           {city.cover && (
-            <div className={styles.cover} style={{ backgroundImage: `url(${ROOT}/photos/cities/${city.cover})` }}></div>
+            <div className={styles.cover} style={{ backgroundImage: `url(${CDN}/photos/cities/${city.cover})` }}></div>
           )}
           <CountryTag country={city.country!} />
           <h1>{city.name}</h1>

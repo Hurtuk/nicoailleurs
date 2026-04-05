@@ -2,7 +2,7 @@ import { Outlet, useParams } from "react-router-dom";
 import useTrip from "../../hooks/useTrip";
 import { useTranslation } from "react-i18next";
 import styles from './TripPage.module.scss';
-import { ROOT } from "../../utils/buildLocalizedUrl";
+import { CDN } from "../../utils/buildLocalizedUrl";
 import CountryTag from "../../components/CountryTag/CountryTag";
 import TripSummary from "../../components/TripSummary/TripSummary";
 import TableOfContents from "../../components/TableOfContents/TableOfContents";
@@ -26,7 +26,7 @@ export default function TripPage() {
     <div className={styles.tripWrapper}>
       {trip && (
         <>
-          <div className={styles.banner} style={{ backgroundImage: `url(${ROOT}/photos/${trip.id}/banner.jpg)` }}>
+          <div className={styles.banner} style={{ backgroundImage: `url(${CDN}/photos/${trip.id}/banner.jpg)` }}>
             <div>
               {trip.countries.map(country => 
                 <CountryTag key={country.slug} country={country} />

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./CityCard.module.scss";
 import useLocalizedPath from "../../hooks/useLocalizedPath";
-import { ROOT } from "../../utils/buildLocalizedUrl";
+import { CDN } from "../../utils/buildLocalizedUrl";
 import type { City } from "../../api/models/City";
 
 type Props = {
@@ -14,7 +14,7 @@ export default function CityCard({ city }: Props) {
   return (
     <Link to={path('cities', city.slug)} className={styles.card}>
       <div className={styles.imageWrapper}>
-        <img src={ROOT + "/photos/cities/" + city.id + ".jpg"} alt={city.name} className={styles.image} />
+        <img src={CDN + "/photos/cities/" + city.id + ".jpg"} alt={city.name} className={styles.image} />
       </div>
       <div className={styles.content}>
         <h4 className={styles.title}>{city.name}</h4>

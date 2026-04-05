@@ -11,3 +11,12 @@
     justify-content: center;
   }
 }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+  align-items: center;
+}

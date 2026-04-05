@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./TripCard.module.scss";
 import type { Trip } from "../../api/models/Trip";
 import useLocalizedPath from "../../hooks/useLocalizedPath";
-import { ROOT } from "../../utils/buildLocalizedUrl";
+import { CDN } from "../../utils/buildLocalizedUrl";
 import { useTranslation } from "react-i18next";
 import { grammarRules } from "../../utils/formatContent";
 
@@ -19,7 +19,7 @@ export default function TripCard({ trip, tag }: Props) {
     <Link to={path('trips', trip.slug)} className={styles.card}>
       {tag && <span className={styles.dateTag}>{tag}</span>}
       <div className={styles.imageWrapper}>
-        <img src={ROOT + "/photos/" + trip.id + "/cover.jpg"} alt={trip.title} className={styles.image} />
+        <img src={CDN + "/photos/" + trip.id + "/cover.jpg"} alt={trip.title} className={styles.image} />
       </div>
       <div className={styles.content}>
         <span className={styles.country}>{trip.place}</span>

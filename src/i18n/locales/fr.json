@@ -65,5 +65,7 @@
     "facebook": "Partager cette page sur Facebook",
     "messenger": "Partager cette page sur Messenger",
     "instagram": "Partager cette page sur Instagram"
-  }
+  },
+  "tags": "Mot-clé :",
+  "tags_other": "Mots-clés :"
 }

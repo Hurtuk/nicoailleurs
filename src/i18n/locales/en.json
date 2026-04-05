@@ -65,5 +65,7 @@
     "facebook": "Share this page on Facebook",
     "messenger": "Share this page on Messenger",
     "instagram": "Share this page on Instagram"
-  }
+  },
+  "tags_one": "Tag:",
+  "tags_other": "Tags:"
 }

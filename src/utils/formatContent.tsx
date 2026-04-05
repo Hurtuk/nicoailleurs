@@ -1,7 +1,7 @@
 import Gallery from "../components/Gallery/Gallery";
 import Hike from "../components/Hike/Hike";
 import Travel from "../components/Travel/Travel";
-import { ROOT } from "./buildLocalizedUrl";
+import { CDN } from "./buildLocalizedUrl";
 
 export function grammarRules(language: string, paragraph: string) {
   if (language === 'fr') {
@@ -10,6 +10,8 @@ export function grammarRules(language: string, paragraph: string) {
 
   paragraph = paragraph.replace(/ ([:?!;»])/g, "\u00A0$1");
   paragraph = paragraph.replace(/« /g, "«\u00A0");
+
+  paragraph = paragraph.replaceAll("...", "…");
   return paragraph;
 }
 
@@ -44,7 +46,7 @@ function gallery(normalized: string, i:number, tripId: string) {
       .split(/\s+/)
       .filter(Boolean)
       .sort((img1, img2) => img1.localeCompare(img2))
-      .map(filename => `${ROOT}/photos/${tripId}/${filename}`);
+      .map(filename => `${CDN}/photos/${tripId}/${filename}`);
     if (images[0].endsWith("mp4") || images[0].endsWith("3gp")) {
       return <video controls style={{display: 'block', maxHeight: '400px', margin: '0 auto'}}>
         <source src={images[0]} type="video/mp4" />

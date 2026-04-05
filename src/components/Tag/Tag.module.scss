@@ -1,0 +1,23 @@
+.tagLink {
+  display: inline-flex;
+  align-items: center;
+  background-color: $main-color-light;
+  color: #fff;
+  padding: .25rem 1rem;
+  border-radius: .5rem;
+  opacity: .7;
+  transition: opacity .2s;
+  font-weight: normal;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+    color: #fff;
+  }
+
+  img {
+    height: 1em;
+    margin-left: .5rem;
+    margin-right: -.5rem;
+  }
+}

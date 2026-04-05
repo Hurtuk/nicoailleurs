@@ -15,6 +15,7 @@ interface Filters {
   sort?: string;
   country?: string;
   city?: string;
+  tag?: string;
 }
 
 export default function useTrips(lang: string, filters?: Filters): UseTripsResult {
@@ -22,6 +23,8 @@ export default function useTrips(lang: string, filters?: Filters): UseTripsResul
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [reloadTrigger, setReloadTrigger] = useState<number>(0);
+
+  const filtersKey = JSON.stringify(filters);
 
   const refresh = () => setReloadTrigger((prev) => prev + 1);
 
@@ -54,7 +57,7 @@ export default function useTrips(lang: string, filters?: Filters): UseTripsResul
     return () => {
       isMounted = false;
     };
-  }, [reloadTrigger, lang, filters]);
+  }, [reloadTrigger, lang, filtersKey]);
 
   return { trips, loading, error, refresh };
 }

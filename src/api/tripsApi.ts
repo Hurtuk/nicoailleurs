@@ -67,6 +67,11 @@ export const getCity = async (lang: string, slug: string): Promise<City> => {
   };
 };
 
-function jsonToUrl(json: any) {
-  return new URLSearchParams(json).toString();
+function jsonToUrl(params: any) {
+  const cleaned = Object.fromEntries(
+    Object.entries(params)
+      .filter(([_, v]) => v !== undefined && v !== null && v !== "")
+      .map(([k, v]) => [k, String(v)])
+  );
+  return new URLSearchParams(cleaned).toString();
 }
