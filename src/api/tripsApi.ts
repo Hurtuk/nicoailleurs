@@ -3,7 +3,7 @@ import type { Trip } from "./models/Trip";
 import type { Country } from "./models/Country";
 import type { City } from "./models/City";
 
-const API_BASE = "https://nicoailleurs.com/api";
+const API_BASE = "https://louiecinephile.fr/nicoailleurs/api";
 
 export const getTrips = async (lang: string, filters?: any): Promise<Trip[]> => {
   const { data } = await axios.get<Trip[]>(`${API_BASE}/getTrips.php?lang=${lang}&` + jsonToUrl(filters));
