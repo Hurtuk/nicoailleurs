@@ -1,6 +1,6 @@
 import { SUPPORTED_LANGS } from "../i18n";
 
-export const ROOT = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname) ? "https://louiecinephile.fr/nicoailleurs" : "";
+export const ROOT = "https://louiecinephile.fr/nicoailleurs";
 
 export const ROUTES: {[lang: string]: any} = {
   fr: { "/": "", countries: "pays", cities: "villes", trips: "voyages", guides: "guides" },
