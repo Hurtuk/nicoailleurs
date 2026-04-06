@@ -14,6 +14,7 @@ import ChapterPage from "./pages/trip/ChapterPage/ChapterPage";
 import TripHomepage from "./pages/trip/TripHomepage/TripHomepage";
 import CostsPage from "./pages/trip/CostsPage/CostsPage";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import GuidesPage from "./pages/GuidesPage/GuidesPage";
 
 function App() {
   return (
@@ -46,6 +47,8 @@ function App() {
           <Route path="villes/:slug" element={<CityPage />} />
           <Route path="cities" element={<CitiesPage />} />
           <Route path="cities/:slug" element={<CityPage />} />
+
+          <Route path="guides" element={<GuidesPage />} />
         </Route>
       </Routes>
       <Footer />

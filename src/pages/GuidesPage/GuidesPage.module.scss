@@ -1,0 +1,11 @@
+.guidesWrapper {
+  @include page;
+
+  &::before {
+    background-image: url(/images/latest-bg.jpg);
+  }
+
+  p {
+    text-align: center;
+  }
+}
