@@ -2,9 +2,10 @@ export default {
   async fetch(request: Request, env: { ASSETS: { fetch: typeof fetch } }) {
     const url = new URL(request.url);
     const ua = request.headers.get('user-agent') || '';
-    const isCrawler = /facebookexternalhit|Facebot|meta-externalagent|Twitterbot|LinkedInBot|WhatsApp/i.test(ua);
+    const isCrawler = /facebookexternalhit|Facebot|Twitterbot|LinkedInBot|WhatsApp/i.test(ua);
     const match = url.pathname.match(/^\/(?:en\/)?(trips|voyages)\/([^/]+)/);
 
+    // 👉 OG uniquement pour crawlers
     if (isCrawler && match) {
       const lang = url.pathname.startsWith('/en/') ? 'en' : 'fr';
       const slug = match[2];
@@ -14,20 +15,25 @@ export default {
           `https://louiecinephile.fr/nicoailleurs/api/meta.php?slug=${slug}&lang=${lang}`
         );
         const meta = await metaRes.json() as any;
+
         if (meta && !meta.error) {
           return new Response(buildHtml(meta), {
-            headers: {
-              'Content-Type': 'text/html;charset=UTF-8',
-              'X-Debug-Worker': 'OG'
-            }
+            headers: { 'Content-Type': 'text/html;charset=UTF-8' }
           });
         }
-      } catch(e) {
-        
-      }
+      } catch (e) {}
     }
 
-    return env.ASSETS.fetch(request);
+    // 👉 appel assets
+    let response = await env.ASSETS.fetch(request);
+
+    // 👉 fallback SPA si 404
+    if (response.status === 404) {
+      const indexRequest = new Request(new URL('/', request.url).toString(), request);
+      response = await env.ASSETS.fetch(indexRequest);
+    }
+
+    return response;
   }
 };
 
