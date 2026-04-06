@@ -55,6 +55,7 @@
 
   @media screen and (max-width: $screen-small) {
     height: 250px;
+    width: 100%;
 
     &:only-child {
       height: 300px;

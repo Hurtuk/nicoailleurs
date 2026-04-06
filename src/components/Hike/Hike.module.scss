@@ -86,8 +86,15 @@
   }
 
   @media screen and (max-width: $screen-small) {
+    margin-right: -1rem;
+    margin-left: -1rem;
+
     img {
       margin-left: 1rem;
+    }
+
+    div > span:first-child {
+      min-width: unset;
     }
   }
 }

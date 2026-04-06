@@ -66,6 +66,9 @@
   }
 
   @media screen and (max-width: $screen-small) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
     p {
       img {
         max-width: 100%;

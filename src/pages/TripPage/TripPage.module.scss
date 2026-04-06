@@ -106,6 +106,9 @@
   }
 
   @media screen and (max-width: $screen-medium) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
     .banner {
       font-size: .6em;
     }
