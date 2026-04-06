@@ -1,5 +1,5 @@
 export default {
-  async fetch(request, env) {
+  async fetch(request: Request, env: { ASSETS: { fetch: typeof fetch } }) {
     const url = new URL(request.url);
     const ua = request.headers.get('user-agent') || '';
     const isCrawler = /facebookexternalhit|meta-externalagent|Twitterbot|LinkedInBot|WhatsApp/i.test(ua);
@@ -11,26 +11,24 @@ export default {
 
       try {
         const metaRes = await fetch(
-          `https://louiecinephile.fr/nicoailleurs/api/meta.php?slug=${slug}&lang=${lang}`,
-          { redirect: 'follow' }
+          `https://louiecinephile.fr/nicoailleurs/api/meta.php?slug=${slug}&lang=${lang}`
         );
-        const meta = await metaRes.json();
+        const meta = await metaRes.json() as any;
         if (meta && !meta.error) {
           return new Response(buildHtml(meta), {
             headers: { 'Content-Type': 'text/html;charset=UTF-8' }
           });
         }
       } catch(e) {
-        // En cas d'erreur, on laisse passer vers la SPA
+        // fallback vers la SPA
       }
     }
 
-    // Pour tout le reste : sert les assets statiques normalement
     return env.ASSETS.fetch(request);
   }
 };
 
-function buildHtml({ title, description, image, url }) {
+function buildHtml({ title, description, image, url }: any) {
   return `<!DOCTYPE html>
 <html>
 <head>
