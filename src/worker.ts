@@ -2,7 +2,7 @@ export default {
   async fetch(request: Request, env: { ASSETS: { fetch: typeof fetch } }) {
     const url = new URL(request.url);
     const ua = request.headers.get('user-agent') || '';
-    const isCrawler = /facebookexternalhit|meta-externalagent|Twitterbot|LinkedInBot|WhatsApp/i.test(ua);
+    const isCrawler = /facebookexternalhit|Facebot|meta-externalagent|Twitterbot|LinkedInBot|WhatsApp/i.test(ua);
     const match = url.pathname.match(/^\/(?:en\/)?(trips|voyages)\/([^/]+)/);
 
     if (isCrawler && match) {
