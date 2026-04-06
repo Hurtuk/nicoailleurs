@@ -5,7 +5,7 @@ export default {
     const isCrawler = /facebookexternalhit|meta-externalagent|Twitterbot|LinkedInBot|WhatsApp/i.test(ua);
     const match = url.pathname.match(/^\/(?:en\/)?(trips|voyages)\/([^/]+)/);
 
-    if (isCrawler && match) {
+    if (/*isCrawler &&*/ match) {
       const lang = url.pathname.startsWith('/en/') ? 'en' : 'fr';
       const slug = match[2];
 
