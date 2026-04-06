@@ -74,5 +74,11 @@
         max-width: 100%;
       }
     }
+
+    .dayData {
+      span:not(:empty) {
+        padding-left: 3em;
+      }
+    }
   }
 }

@@ -22,10 +22,11 @@
 
     > div {
       display: flex;
-      gap: 1rem;
+      gap: .5rem 1rem;
       justify-content: center;
       position: relative;
       z-index: 1;
+      flex-wrap: wrap;
 
       a {
         margin: 0;
