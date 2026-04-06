@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import useLocalizedPath from "../../hooks/useLocalizedPath";
 
 function isHome(pathname: string): boolean {
-  return ['/', '/fr', '/en'].includes(pathname);
+  return ['/', '/fr/', '/en/'].includes(pathname);
 }
 
 export default function Header() {
