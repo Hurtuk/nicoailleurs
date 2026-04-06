@@ -23,14 +23,7 @@ export default {
           });
         }
       } catch(e) {
-        const res = await env.ASSETS.fetch(request);
-        return new Response(res.body, {
-          ...res,
-          headers: {
-            ...res.headers,
-            'X-Debug-Worker': 'SPA'
-          }
-        });
+        
       }
     }
 
