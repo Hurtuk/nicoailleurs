@@ -5,12 +5,15 @@ import useVisitedCountries from "../../hooks/useVisitedCountries";
 import type { Country } from "../../api/models/Country";
 import { Link } from "react-router-dom";
 import useLocalizedPath from "../../hooks/useLocalizedPath";
+import { usePageMeta, DEFAULT_META } from "../../hooks/usePageMeta";
 
 export default function ContinentsPage() {
   const { i18n, t } = useTranslation();
   const { countries } = useVisitedCountries(i18n.language);
   
   const path = useLocalizedPath();
+  
+  usePageMeta(DEFAULT_META);
 
   const countriesByContinent = useMemo(() => {
     return countries.reduce<{ [continent: string]: Country[] }>((acc, country) => {

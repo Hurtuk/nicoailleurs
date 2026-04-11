@@ -4,12 +4,15 @@ import useLocalizedPath from "../../hooks/useLocalizedPath";
 import useCountry from "../../hooks/useCountry";
 import styles from "./CountryPage.module.scss";
 import TripCard from "../../components/TripCard/TripCard";
+import { usePageMeta, DEFAULT_META } from "../../hooks/usePageMeta";
 
 export default function CountryPage() {
   const { i18n, t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const { country } = useCountry(i18n.language, slug ?? '');
   const path = useLocalizedPath();
+  
+  usePageMeta(DEFAULT_META);
 
   return (
     <div className={styles.countryWrapper}>

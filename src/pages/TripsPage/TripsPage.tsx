@@ -7,6 +7,7 @@ import styles from "./TripsPage.module.scss";
 import { useSearchParams } from "react-router-dom";
 import type { Tag as TagModel } from "../../api/models/Tag";
 import Tag from "../../components/Tag/Tag";
+import { usePageMeta, DEFAULT_META } from "../../hooks/usePageMeta";
 
 export default function TripsPage() {
   const { i18n, t } = useTranslation();
@@ -15,6 +16,8 @@ export default function TripsPage() {
   const { trips } = useTrips(i18n.language, { tag });
 
   const [tagObject, setTagObject] = useState<TagModel>();
+  
+  usePageMeta(DEFAULT_META);
 
   const tripsByYear = useMemo(() => {
     setTagObject(trips[0]?.tags?.find(t => t.slug === tag));

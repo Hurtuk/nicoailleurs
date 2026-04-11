@@ -6,12 +6,15 @@ import { Link } from "react-router-dom";
 import useLocalizedPath from "../../hooks/useLocalizedPath";
 import type { City } from "../../api/models/City";
 import unaccentName from "../../utils/unaccentName";
+import { DEFAULT_META, usePageMeta } from "../../hooks/usePageMeta";
 
 export default function CitiesPage() {
   const { i18n, t } = useTranslation();
   const { cities } = useVisitedCities(i18n.language, true);
   
   const path = useLocalizedPath();
+
+  usePageMeta(DEFAULT_META);
 
   const countriesByLetter = useMemo(() => {
     return cities
