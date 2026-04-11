@@ -54,3 +54,15 @@
   color: $main-color-light;
   text-align: center;
 }
+
+@media screen and (max-width: $screen-small) {
+  .card {
+    max-width: 175px;
+    min-width: 150px;
+  }
+
+  .imageWrapper {
+    position: relative;
+    height: 100px;
+  }
+}
