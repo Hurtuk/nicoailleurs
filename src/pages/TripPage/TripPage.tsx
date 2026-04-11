@@ -6,7 +6,7 @@ import { CDN } from "../../utils/buildLocalizedUrl";
 import CountryTag from "../../components/CountryTag/CountryTag";
 import TripSummary from "../../components/TripSummary/TripSummary";
 import TableOfContents from "../../components/TableOfContents/TableOfContents";
-import { usePageMeta } from "../../hooks/usePageMeta";
+import { DEFAULT_META, usePageMeta } from "../../hooks/usePageMeta";
 
 export default function TripPage() {
   const { i18n } = useTranslation();
@@ -16,8 +16,8 @@ export default function TripPage() {
   usePageMeta({
     titleFr: `${trip?.title} — Nico ailleurs`,
     titleEn: `${trip?.title} — Nico ailleurs`,
-    descriptionFr: 'Récits de voyage où le fond, les expériences, se mêlent à la forme, la littérature, la phrase juste, le mot adéquat.',
-    descriptionEn: 'Travel writing where substance — the experiences — intertwines with form: the literature, the well-turned phrase, the precise word.',
+    descriptionFr: trip?.excerpt ?? DEFAULT_META.descriptionFr,
+    descriptionEn: trip?.excerpt ?? DEFAULT_META.descriptionEn,
   });
 
   return (
