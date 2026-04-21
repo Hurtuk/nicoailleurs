@@ -17,7 +17,9 @@ export default function ContinentsPage() {
 
   const countriesByContinent = useMemo(() => {
     return countries.reduce<{ [continent: string]: Country[] }>((acc, country) => {
-      (acc[country.continent] ??= []).push(country);
+      if (!country.future) {
+        (acc[country.continent] ??= []).push(country);
+      }
       return acc;
     }, {});
   }, [countries]);
