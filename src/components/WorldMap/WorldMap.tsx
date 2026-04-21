@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { useNavigate } from "react-router-dom";
 import styles from "./WorldMap.module.scss";
+import { useTranslation } from "react-i18next";
 
 const GEO_URL = 'https://unpkg.com/world-atlas@2/countries-110m.json';
 
@@ -10,6 +11,7 @@ export type PlaceConfig = {
   url: string;
   label: string;
   coordinates?: [number, number];
+  future?: boolean;
 };
 
 type Props = {
@@ -20,6 +22,7 @@ type Props = {
 const dimensions = { width: 800, height: 400 };
 
 export default function WorldMap({ countryConfig, markers }: Props) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [tooltip, setTooltip] = useState<{ label: string; x: number; y: number } | null>(null);
 
@@ -61,7 +64,7 @@ export default function WorldMap({ countryConfig, markers }: Props) {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill={config ? "rgba(110, 135, 111, .9)" : "rgba(255, 255, 255, .3)"}
+                    fill={config ? (config.future ? "#d17b0f" : "rgba(110, 135, 111, .9)") : "rgba(255, 255, 255, .3)"}
                     stroke="rgb(0,0,0,.5)"
                     strokeOpacity={.4}
                     strokeWidth={0.5}
@@ -73,7 +76,7 @@ export default function WorldMap({ countryConfig, markers }: Props) {
                     className={config ? styles.countryClickable : styles.country}
                     onClick={() => handleCountryClick(geo)}
                     onMouseEnter={(e) => {
-                      if (config) setTooltip({ label: config.label, x: e.clientX, y: e.clientY });
+                      if (config) setTooltip({ label: config.label + (config.future ? " [" + t('future') + "]" : ""), x: e.clientX, y: e.clientY });
                     }}
                     onMouseMove={(e) => {
                       setTooltip(t => t ? { ...t, x: e.clientX, y: e.clientY } : null);

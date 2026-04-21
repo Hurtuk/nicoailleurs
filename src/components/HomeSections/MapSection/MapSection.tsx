@@ -17,7 +17,7 @@ export default function HomePage() {
     return Object.fromEntries(
       countries.map(country => [
         country.num,
-        { label: country.name, url: path("countries", country.slug) }
+        { label: country.name, url: path("countries", country.slug), future: country.future }
       ])
     );
   }, [countries, path]);

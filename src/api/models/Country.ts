@@ -11,4 +11,5 @@ export interface Country {
   trips?: Trip[];
   days?: number;
   cities?: City[];
+  future?: boolean;
 }
