@@ -19,9 +19,13 @@ export default function TableOfContents({ trip }: Props) {
     `${isActive ? styles.active : ""}`.trim();
 
   const allHaveDates = trip.chapters.filter(c => !!c.date).length === trip.chapters.length - 2;
-  const cities = trip.chapters.map((chapter, index) => 
+
+  let cities = trip.chapters.map((chapter, index) => 
     index === 0 || chapter.city !== trip.chapters[index - 1].city ? chapter.city : ''
   );
+  if (cities.filter(c => !!c).length == 1) {
+    cities = [];
+  }
 
   let chapterNumber = 0;
 
@@ -52,7 +56,7 @@ export default function TableOfContents({ trip }: Props) {
                 <span className={sameDay ? styles.sameDay : ''}>{numberToDisplay}</span>
                 <div>
                   <h3>{grammarRules(i18n.language, chapter.title)}</h3>
-                  <p>{cities[index]}</p>
+                  <p>{cities[index] ?? ''}</p>
                 </div>
                 <span className={styles.chapterDate}>{chapter.date?.toLocaleDateString(i18n.language, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
               </NavLink>
