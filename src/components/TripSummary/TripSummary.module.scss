@@ -108,7 +108,13 @@
     }
   }
 
+  @media screen and (max-width: $screen-large) {
+    font-size: .9em;
+  }
+
   @media screen and (max-width: $screen-medium) {
+    padding-left: 1rem;
+    padding-right: 1rem;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem;
@@ -123,11 +129,6 @@
         }
       }
     }
-  }
-
-  @media screen and (max-width: $screen-medium) {
-    padding-left: 1rem;
-    padding-right: 1rem;
 
     h2 {
       + span,
