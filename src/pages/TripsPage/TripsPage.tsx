@@ -32,18 +32,20 @@ export default function TripsPage() {
     <div className={styles.tripsWrapper}>
       <h1>{t('header.stories')}</h1>
       {tagObject && <h2>Tag : <Tag tag={tagObject} clickToRemove /></h2>}
-      {Object.entries(tripsByYear)
-        .sort(([y1], [y2]) => y2.localeCompare(y1))
-        .map(([year, tripsList]) => (
-          <div key={year} className={tripsList.length <= 2 ? styles.oldTrip : ''}>
-            <h2 className={styles.year}>{year}</h2>
-            <div className="trips-wrapper">
-              {tripsList.map((trip) => (
-                <TripCard key={trip.id} trip={trip} tag={trip.startDate.toLocaleDateString(i18n.language, { month: 'long' })} />
-              ))}
+      <div className={styles.trips}>
+        {Object.entries(tripsByYear)
+          .sort(([y1], [y2]) => y2.localeCompare(y1))
+          .map(([year, tripsList]) => (
+            <div key={year} className={tripsList.length <= 2 ? styles.oldTrip : ''}>
+              <h2 className={styles.year}>{year}</h2>
+              <div className="trips-wrapper">
+                {tripsList.map((trip) => (
+                  <TripCard key={trip.id} trip={trip} tag={trip.startDate.toLocaleDateString(i18n.language, { month: 'long' })} />
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
     </div>
   );
 }
