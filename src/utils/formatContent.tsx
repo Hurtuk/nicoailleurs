@@ -42,6 +42,15 @@ export function formatContent(language: string, tripId: string, content: string,
 type GuideItem = { text: string; children: string[] };
 type GuideList = { type: 'ul' | 'ol'; items: GuideItem[] };
 
+// Formatage inline appliqué au contenu des paragraphes, titres et items de liste :
+//   *gras*      → <strong>  (au sein d'une ligne ; les titres — ligne entière entre *…* — sont gérés en amont)
+//   _italique_  → <em>      (ligne entière ou au sein d'un paragraphe)
+function inlineMarkup(language: string, text: string): string {
+  return grammarRules(language, text)
+    .replace(/\*([^*\n]+)\*/g, '<strong>$1</strong>')
+    .replace(/_([^_\n]+)_/g, '<em>$1</em>');
+}
+
 // Formatage du contenu d'un guide :
 //   *Titre*        → <h2>
 //   - item         → liste non ordonnée (<ul>)
@@ -53,7 +62,7 @@ export function formatGuideContent(language: string, content: string) {
   // État encapsulé dans un objet pour éviter le narrowing de flow sur une variable réassignée dans des closures
   const state: { list: GuideList | null; key: number } = { list: null, key: 0 };
 
-  const inline = (text: string) => ({ __html: grammarRules(language, text) });
+  const inline = (text: string) => ({ __html: inlineMarkup(language, text) });
 
   const renderItem = (item: GuideItem, i: number) => (
     <li key={i}>
@@ -89,8 +98,9 @@ export function formatGuideContent(language: string, content: string) {
 
     if (trimmed === '') { flush(); continue; }
 
-    // Titre entre astérisques
-    const titleMatch = trimmed.match(/^\*(.+)\*$/);
+    // Titre : ligne entière entourée d'une seule paire d'astérisques (aucun astérisque interne,
+    // sinon c'est un paragraphe contenant plusieurs segments en gras)
+    const titleMatch = trimmed.match(/^\*([^*]+)\*$/);
     if (titleMatch) {
       flush();
       nodes.push(<h2 key={state.key++} dangerouslySetInnerHTML={inline(titleMatch[1].trim())} />);

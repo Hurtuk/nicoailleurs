@@ -59,9 +59,6 @@
     "nights_other": "{{count}} nights",
     "album": "Photos"
   },
-  "guide": {
-    "back": "← Back to guides"
-  },
   "link": "Link",
   "gpx": "GPX",
   "share": {
