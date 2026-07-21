@@ -52,12 +52,13 @@ function inlineMarkup(language: string, text: string): string {
 }
 
 // Formatage du contenu d'un guide :
-//   *Titre*        → <h2>
-//   - item         → liste non ordonnée (<ul>)
-//     - sous-item  → sous-liste (une espace avant le tiret)
-//   x. item        → liste ordonnée (<ol>)
-//   (autre)        → <p>
-export function formatGuideContent(language: string, content: string) {
+//   *Titre*                  → <h2>
+//   [gallery a.jpg b.jpg]    → galerie d'images (photos/guides/{idGuide}/…)
+//   - item                   → liste non ordonnée (<ul>)
+//     - sous-item            → sous-liste (une espace avant le tiret)
+//   x. item                  → liste ordonnée (<ol>)
+//   (autre)                  → <p>
+export function formatGuideContent(language: string, content: string, guideId: string) {
   const nodes: JSX.Element[] = [];
   // État encapsulé dans un objet pour éviter le narrowing de flow sur une variable réassignée dans des closures
   const state: { list: GuideList | null; key: number } = { list: null, key: 0 };
@@ -107,6 +108,14 @@ export function formatGuideContent(language: string, content: string) {
       continue;
     }
 
+    // Galerie d'images : [gallery fichier1.jpg fichier2.jpg ...]
+    const galleryMatch = trimmed.match(/^\[gallery ([^\]]+)\]$/);
+    if (galleryMatch) {
+      flush();
+      nodes.push(galleryElement(galleryMatch[1], state.key++, `${CDN}/photos/guides/${guideId}`));
+      continue;
+    }
+
     // Sous-item (indenté d'au moins une espace, commence par un tiret)
     const subMatch = line.match(/^\s+-\s+(.*)$/);
     if (subMatch && state.list && state.list.items.length) {
@@ -137,20 +146,25 @@ export function formatGuideContent(language: string, content: string) {
   return nodes;
 }
 
+// Construit une galerie (ou une vidéo) à partir d'une liste de fichiers et d'un chemin de base
+function galleryElement(filenames: string, key: number, basePath: string) {
+  const images = filenames
+    .split(/\s+/)
+    .filter(Boolean)
+    .sort((img1, img2) => img1.localeCompare(img2))
+    .map(filename => `${basePath}/${filename}`);
+  if (images[0].endsWith("mp4") || images[0].endsWith("3gp")) {
+    return <video key={key} controls style={{display: 'block', maxHeight: '400px', margin: '0 auto'}}>
+      <source src={images[0]} type="video/mp4" />
+    </video>;
+  }
+  return <Gallery key={key} images={images} />;
+}
+
 function gallery(normalized: string, i:number, tripId: string) {
   const galleryMatch = normalized.match(/^\[gallery ([^\]]+)\]$/);
   if (galleryMatch) {
-    const images = galleryMatch[1]
-      .split(/\s+/)
-      .filter(Boolean)
-      .sort((img1, img2) => img1.localeCompare(img2))
-      .map(filename => `${CDN}/photos/${tripId}/${filename}`);
-    if (images[0].endsWith("mp4") || images[0].endsWith("3gp")) {
-      return <video controls style={{display: 'block', maxHeight: '400px', margin: '0 auto'}}>
-        <source src={images[0]} type="video/mp4" />
-      </video>;
-    }
-    return <Gallery key={i} images={images} />;
+    return galleryElement(galleryMatch[1], i, `${CDN}/photos/${tripId}`);
   }
   return null;
 }

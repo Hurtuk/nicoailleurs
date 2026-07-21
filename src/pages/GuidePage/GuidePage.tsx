@@ -29,7 +29,7 @@ export default function GuidePage() {
           height={128}
         />
         <h1>{grammarRules(i18n.language, guide.title)}</h1>
-        {guide.content && formatGuideContent(i18n.language, guide.content)}
+        {guide.content && formatGuideContent(i18n.language, guide.content, guide.id)}
       </article>
     </div>
   );
