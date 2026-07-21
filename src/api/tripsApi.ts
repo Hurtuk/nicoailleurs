@@ -2,6 +2,7 @@ import axios from "axios";
 import type { Trip } from "./models/Trip";
 import type { Country } from "./models/Country";
 import type { City } from "./models/City";
+import type { Guide } from "./models/Guide";
 
 const API_BASE = "https://louiecinephile.fr/nicoailleurs/api";
 
@@ -65,6 +66,16 @@ export const getCity = async (lang: string, slug: string): Promise<City> => {
     trips: data.trips?.map(t => ({ ...t, startDate: new Date(t.startDate)})),
     count: data.count ? parseInt('' + data.count) : undefined
   };
+};
+
+export const getGuides = async (lang: string): Promise<Guide[]> => {
+  const { data } = await axios.get<Guide[]>(`${API_BASE}/getGuides.php?lang=${lang}`);
+  return data;
+};
+
+export const getGuide = async (slug: string, lang: string): Promise<Guide> => {
+  const { data } = await axios.get<Guide>(`${API_BASE}/getGuide.php?guide=${slug}&lang=${lang}`);
+  return data;
 };
 
 function jsonToUrl(params: any) {

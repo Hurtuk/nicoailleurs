@@ -15,6 +15,7 @@ import TripHomepage from "./pages/trip/TripHomepage/TripHomepage";
 import CostsPage from "./pages/trip/CostsPage/CostsPage";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import GuidesPage from "./pages/GuidesPage/GuidesPage";
+import GuidePage from "./pages/GuidePage/GuidePage";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path="cities/:slug" element={<CityPage />} />
 
           <Route path="guides" element={<GuidesPage />} />
+          <Route path="guides/:slug" element={<GuidePage />} />
         </Route>
       </Routes>
       <Footer />

@@ -1,0 +1,64 @@
+.guideWrapper {
+  @include page;
+
+  &::before {
+    background-image: url(/images/latest-bg.jpg);
+  }
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: $main-color-light;
+}
+
+.guideContent {
+  background-color: rgba(255, 255, 255, .8);
+  padding: 1.5rem 2rem 2rem;
+  border-radius: 1rem;
+
+  .icon {
+    display: block;
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  h1 {
+    @include tildes;
+    color: $main-color;
+    text-align: center;
+    margin-top: .5rem;
+  }
+
+  h2 {
+    @include tildes;
+    color: $main-color;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  p {
+    line-height: 1.6;
+    color: $main-color;
+  }
+
+  ul, ol {
+    line-height: 1.6;
+    color: $main-color;
+    padding-left: 1.5rem;
+
+    ul {
+      margin-top: .25rem;
+    }
+  }
+
+  li {
+    margin-bottom: .35rem;
+  }
+
+  @media screen and (max-width: $screen-small) {
+    padding: 1rem 1.25rem 1.5rem;
+  }
+}
