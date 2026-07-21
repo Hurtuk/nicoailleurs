@@ -4,18 +4,24 @@ export default {
     const ua = request.headers.get('user-agent') || '';
 
     const isCrawler = /facebookexternalhit|Facebot|Twitterbot|LinkedInBot|WhatsApp|Slackbot|Discordbot/i.test(ua);
-    const match = url.pathname.match(/^\/(?:en\/)?(trips|voyages)\/([^/]+)/);
+    const match = url.pathname.match(/^\/(?:en\/)?(trips|voyages|guides|villes|cities|pays|countries)\/([^/]+)/);
 
     // =========================
     // 1. OG DYNAMIQUE (crawlers)
     // =========================
     if (isCrawler && match) {
       const lang = url.pathname.startsWith('/en/') ? 'en' : 'fr';
+      const seg = match[1];
+      const type =
+        seg === 'guides' ? 'guide' :
+        (seg === 'villes' || seg === 'cities') ? 'city' :
+        (seg === 'pays' || seg === 'countries') ? 'country' :
+        'trip';
       const slug = match[2];
 
       try {
         const metaRes = await fetch(
-          `https://louiecinephile.fr/nicoailleurs/api/meta.php?slug=${slug}&lang=${lang}`,
+          `https://louiecinephile.fr/nicoailleurs/api/meta.php?type=${type}&slug=${slug}&lang=${lang}`,
           { cf: { cacheTtl: 300 } } as any // cache API 5 min
         );
 
