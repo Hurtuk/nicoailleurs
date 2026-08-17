@@ -1,6 +1,125 @@
+/* Palette « carnet de voyage », celle des images d'itinéraire de /travel. */
+$sea: #d6e5ec;
+$land: #f0e9d8;
+$land-line: #cdc4b0;
+$country: #e9c98d;
+$country-line: #ab8046;
+$graticule: #6f858f;
+$route: #3b4247;
+$ink: #2a3137;
+$soft: #6f7c85;
+$paper: #f7f2e7;
+$halo: #fffdf6;
+
+.map {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(27, 49, 41, .18);
+}
+
+.sea { fill: $sea; }
+
+.land {
+  fill: $land;
+  stroke: $land-line;
+  stroke-width: 1.6;
+}
+
+.highlight {
+  fill: $country;
+  stroke: $country-line;
+  stroke-width: 3;
+}
+
+.graticule {
+  fill: none;
+  stroke: $graticule;
+  stroke-width: 1;
+  opacity: .14;
+}
+
+/* Halo clair d'abord : le pointillé reste lisible sur l'ocre des pays. */
+.routeHalo {
+  fill: none;
+  stroke: rgba(255, 253, 246, .75);
+  stroke-width: 15;
+  stroke-linecap: round;
+}
+
+.route {
+  fill: none;
+  stroke: $route;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 20 15;
+}
+
+.pin {
+  fill: $halo;
+  stroke: $route;
+  stroke-width: 5;
+}
+
+.pinCore { fill: $route; }
+
+.medallion {
+  fill: $halo;
+  stroke: $route;
+  stroke-width: 4;
+}
+
+/* Les noms passent sur les frontières et sur le pointillé : ils sont doublés
+   d'un halo, tracé avant le remplissage. */
+.cityLabel {
+  font-family: Caveat, cursive;
+  font-size: 46px;
+  fill: $ink;
+  stroke: rgba(255, 253, 246, .9);
+  stroke-width: 8;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+
+.paper { fill: $paper; }
+.paperClear { stop-color: $paper; stop-opacity: 0; }
+.paperSolid { stop-color: $paper; }
+
+.legendCities {
+  font-family: Cookie, cursive;
+  color: $ink;
+}
+
+.legendCountries {
+  font-family: Caveat, cursive;
+  color: $soft;
+}
+
+.legendText { fill: currentColor; }
+
+.legendArrow {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+}
+
+/* Le temps que la carte se dessine, le trajet garde la place qu'elle prendra. */
+.pending {
+  max-width: 600px;
+  margin: 1.5rem auto;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  background-color: rgba(240, 233, 216, .35);
+}
+
 .travelWrapper {
   display: flex;
   max-width: 600px;
+  width: 100%;
   margin: 0 auto;
   justify-content: center;
   align-items: center;

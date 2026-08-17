@@ -10,11 +10,18 @@ export default function useGuide(slug: string, lang: string) {
   useEffect(() => {
     if (!slug) return;
 
+    /* Sur /en/, la langue passe de "fr" à "en" au premier rendu : deux requêtes
+       partent, et sans ce garde-fou c'est la dernière arrivée — pas la dernière
+       demandée — qui s'affiche, d'où un guide français sur la version anglaise. */
+    let current = true;
+
     setLoading(true);
     getGuide(slug, lang)
-      .then((data) => setGuide(data))
-      .catch(() => setError("Loading error"))
-      .finally(() => setLoading(false));
+      .then((data) => { if (current) setGuide(data); })
+      .catch(() => { if (current) setError("Loading error"); })
+      .finally(() => { if (current) setLoading(false); });
+
+    return () => { current = false; };
   }, [slug, lang]);
 
   return { guide, loading, error };

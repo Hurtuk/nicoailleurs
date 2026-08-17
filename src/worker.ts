@@ -58,6 +58,18 @@ export default {
     // =========================
     const contentType = response.headers.get('Content-Type') || '';
 
+    // Frontières des cartes d'itinéraire : un fichier figé (Natural Earth), que
+    // le navigateur n'a aucune raison de revalider à chaque session.
+    if (url.pathname === '/data/countries-50m.json') {
+      return new Response(response.body, {
+        ...response,
+        headers: {
+          ...response.headers,
+          'Cache-Control': 'public, max-age=31536000, immutable'
+        }
+      });
+    }
+
     // Assets statiques (JS, CSS, images)
     if (
       contentType.includes('javascript') ||

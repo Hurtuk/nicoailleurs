@@ -59,6 +59,10 @@
     "nights_other": "{{count}} nights",
     "album": "Photos"
   },
+  "travel": {
+    "route": "Route from {{from}} to {{to}}",
+    "route_elided": "Route from {{from}} to {{to}}"
+  },
   "link": "Link",
   "gpx": "GPX",
   "share": {

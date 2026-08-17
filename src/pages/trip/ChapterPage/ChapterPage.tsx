@@ -47,7 +47,7 @@ export default function ChapterPage() {
           <span>{chapter.city && <Link to={path("cities", chapter.citySlug)} className={styles.backLink}>{chapter.city}</Link>}</span>
         </div>
         {!chapter.date && chapter.place && <StayPlace nights={chapter.nights} place={chapter.place} stayedUrl={chapter.stayedUrl} />}
-        {formatContent(i18n.language, trip.id, chapter.content, chapter.cityFrom, chapter.cityTo, chapter.transport)}
+        {formatContent(i18n.language, trip, chapter)}
         {chapter.date && chapter.place && <StayPlace nights={chapter.nights} place={chapter.place} stayedUrl={chapter.stayedUrl} />}
         <footer>
           <Link to={`../${chapter.number - 1}`}>{chapter.number > 1 && t('trip.previous')}</Link>

@@ -36,7 +36,9 @@ export default function useCity(lang: string, slug: string): UseCityResult {
     return () => {
       isMounted = false;
     };
-  }, [reloadTrigger, lang]);
+    // slug fait partie de la requête : sans lui, passer d'une ville à l'autre
+    // laisserait la précédente à l'écran.
+  }, [reloadTrigger, lang, slug]);
 
   return { city: city!, loading, error, refresh };
 }

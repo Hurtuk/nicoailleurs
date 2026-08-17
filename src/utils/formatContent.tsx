@@ -1,6 +1,8 @@
 import Gallery from "../components/Gallery/Gallery";
 import Hike from "../components/Hike/Hike";
 import Travel from "../components/Travel/Travel";
+import type { Chapter } from "../api/models/Chapter";
+import type { Trip } from "../api/models/Trip";
 import { CDN } from "./buildLocalizedUrl";
 
 export function grammarRules(language: string, paragraph: string) {
@@ -15,21 +17,21 @@ export function grammarRules(language: string, paragraph: string) {
   return paragraph;
 }
 
-export function formatContent(language: string, tripId: string, content: string, cityFrom: string | undefined, cityTo: string | undefined, transport: string | undefined) {
-  return content
+export function formatContent(language: string, trip: Trip, chapter: Chapter) {
+  return chapter.content
     .split(/\n+/)
     .filter(Boolean)
     .map((paragraph, i) => {
       // Ligne [gallery fichier1.jpg fichier2.jpg ...]
       const normalized = paragraph.replace(/\u00A0/g, ' ').trim();
 
-      let content = gallery(normalized, i, tripId);
+      let content = gallery(normalized, i, trip.id);
       if (content !== null) return content;
 
-      content = travel(normalized, i, cityFrom, cityTo, transport);
+      content = travel(normalized, i, trip, chapter);
       if (content !== null) return content;
 
-      content = hike(normalized, i, tripId);
+      content = hike(normalized, i, trip.id);
       if (content !== null) return content;
 
       paragraph = grammarRules(language, paragraph);
@@ -169,10 +171,18 @@ function gallery(normalized: string, i:number, tripId: string) {
   return null;
 }
 
-function travel(normalized: string, i: number, cityFrom: string | undefined, cityTo: string | undefined, transport: string | undefined) {
+function travel(normalized: string, i: number, trip: Trip, chapter: Chapter) {
   const travelMatch = normalized.match(/\[travel\]/);
+  const { cityFrom, cityTo, transport } = chapter;
   if (travelMatch && cityFrom && cityTo && transport) {
-    return <Travel key={i} cityFrom={cityFrom} cityTo={cityTo} transport={transport} />
+    return <Travel
+      key={i}
+      cityFrom={cityFrom}
+      cityTo={cityTo}
+      transport={transport}
+      cities={trip.cities}
+      countries={trip.countries}
+    />
   }
   return null;
 }

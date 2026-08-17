@@ -36,7 +36,9 @@ export default function useCountry(lang: string, slug: string): UseCountryResult
     return () => {
       isMounted = false;
     };
-  }, [reloadTrigger, lang]);
+    // slug fait partie de la requête : sans lui, passer d'un pays à l'autre
+    // laisserait le précédent à l'écran.
+  }, [reloadTrigger, lang, slug]);
 
   return { country: country!, loading, error, refresh };
 }

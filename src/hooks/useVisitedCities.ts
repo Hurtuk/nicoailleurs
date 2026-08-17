@@ -46,7 +46,8 @@ export default function useVisitedCities(lang: string, all: boolean): UseVisited
     return () => {
       isMounted = false;
     };
-  }, [reloadTrigger, lang]);
+    // all fait partie de la requête, tout comme lang.
+  }, [reloadTrigger, lang, all]);
 
   return { cities, loading, error, refresh };
 }
