@@ -171,10 +171,19 @@ function gallery(normalized: string, i:number, tripId: string) {
   return null;
 }
 
+/*
+ *  [travel] affiche un trajet de la journée du chapitre. Le numéro désigne
+ *  lequel — une journée en compte parfois deux ou trois, une excursion et son
+ *  retour, un transit puis un vol — et [travel] seul vaut [travel 1].
+ */
 function travel(normalized: string, i: number, trip: Trip, chapter: Chapter) {
-  const travelMatch = normalized.match(/\[travel\]/);
-  const { cityFrom, cityTo, transport } = chapter;
-  if (travelMatch && cityFrom && cityTo && transport) {
+  const travelMatch = normalized.match(/\[travel(?:\s+(\d+))?\]/);
+  if (!travelMatch) return null;
+
+  // Quelques séjours anciens n'ont pas toutes leurs villes : le trajet est alors
+  // passé sous silence plutôt que de casser la page.
+  const { cityFrom, cityTo, transport } = chapter.travels[parseInt(travelMatch[1] ?? '1') - 1] ?? {};
+  if (cityFrom && cityTo && transport) {
     return <Travel
       key={i}
       cityFrom={cityFrom}
