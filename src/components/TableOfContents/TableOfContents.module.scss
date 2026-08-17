@@ -1,4 +1,10 @@
 .tableOfContentsWrapper {
+  /* En colonne à gauche du récit, la largeur suivait le plus long des titres et
+     rognait d'autant la place du texte : elle est désormais bornée, et c'est le
+     titre qui passe à la ligne. */
+  flex: 0 1 22rem;
+  min-width: 0;
+
   h2 {
     @include tildes;
     color: $main-color;
@@ -115,6 +121,10 @@
   }
 
   @media screen and (max-width: $screen-large) {
+    /* Le sommaire passe au-dessus du récit : il reprend toute la largeur, et la
+       borne ci-dessus ne doit pas devenir une limite de hauteur. */
+    flex: 0 0 auto;
+
     ul span:last-child {
       display: block;
     }
