@@ -19,7 +19,7 @@ import type { Feature, FeatureCollection, MultiPolygon, Polygon, Position } from
 import type { GeometryCollection, Topology } from 'topojson-specification';
 
 /** Version du modèle : la changer invalide les cartes déjà en cache. */
-export const ROUTE_MAP_VERSION = 1;
+export const ROUTE_MAP_VERSION = 2;
 
 export const SIZE = 1080;          // image carrée, comme celle de /travel
 export const BAND = 250;           // hauteur de la bande de texte, en bas
@@ -33,7 +33,7 @@ const MIN_SEPARATION = 170;
 export const FONT_SCRIPT = '"Cookie", cursive';
 export const FONT_HAND = '"Caveat", cursive';
 const CITY_LABEL_SIZE = 46;
-const LEGEND_CITY_SIZE = 88;
+const LEGEND_CITY_SIZE = 70;    // les noms tenaient la vedette face au texte du récit
 const LEGEND_COUNTRY_SIZE = 34;
 const LEGEND_MIN_SIZE = 18;
 const COUNTRY_SPACING = 0.12;      // interlettrage des pays, en em

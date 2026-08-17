@@ -56,8 +56,15 @@ export function writeRouteMap(key: string, map: RouteMap) {
   const store = storage();
   if (!store) return;
 
+  /* Les cartes d'un format précédent ne se dessinent plus : elles partent au
+     premier enregistrement plutôt que d'attendre leur tour d'éviction. */
+  const previous = readIndex(store).filter(entry => entry !== key);
+  for (const entry of previous.filter(entry => !entry.startsWith(`${PREFIX}${ROUTE_MAP_VERSION}.`))) {
+    store.removeItem(entry);
+  }
+
   // La plus récemment écrite en tête : c'est la fin de la liste qu'on sacrifie.
-  const index = [key, ...readIndex(store).filter(entry => entry !== key)];
+  const index = [key, ...previous.filter(entry => entry.startsWith(`${PREFIX}${ROUTE_MAP_VERSION}.`))];
   const evicted = index.splice(MAX_ENTRIES);
   for (const key of evicted) store.removeItem(key);
 
