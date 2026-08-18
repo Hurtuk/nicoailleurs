@@ -97,6 +97,24 @@ function TravelSummary({ cityFrom, cityTo, transport, pending }: Omit<Props, 'ci
 
 /* ================= La carte ================= */
 
+/*
+ *  Toutes les icônes de transport regardent vers l'est : sur un trajet qui va
+ *  vers l'ouest, celle du médaillon avancerait à reculons. On la retourne.
+ *
+ *  Le sens se lit sur les abscisses projetées, non sur les longitudes : la
+ *  projection pivote pour se centrer sur le trajet, si bien qu'un vol qui
+ *  franchit le 180e méridien — Tokyo vers Los Angeles, longitudes 139 puis -118
+ *  — reste tracé de gauche à droite, et l'avion doit bien regarder à droite.
+ */
+function westward(map: RouteMap) {
+  return map.to.x < map.from.x;
+}
+
+/** Symétrie horizontale autour de l'axe x = cx, l'image restant en place. */
+function mirror(cx: number) {
+  return `translate(${2 * cx} 0) scale(-1 1)`;
+}
+
 function RouteMapFigure({ map, label }: { map: RouteMap; label: string }) {
   // Les deux-points de useId n'ont rien à faire dans un url(#…).
   const id = useId().replace(/:/g, '');
@@ -166,6 +184,7 @@ function RouteMapFigure({ map, label }: { map: RouteMap; label: string }) {
             width={map.logo.r * 1.28}
             height={map.logo.r * 1.28}
             preserveAspectRatio="xMidYMid meet"
+            transform={westward(map) ? mirror(map.logo.x) : undefined}
           />
         </g>
       )}
